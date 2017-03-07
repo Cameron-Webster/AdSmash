@@ -10,10 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307113116) do
+ActiveRecord::Schema.define(version: 20170307133443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.string   "attachment"
+    t.integer  "image_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["image_id"], name: "index_comments_on_image_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "image"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_images_on_project_id", using: :btree
+  end
+
+  create_table "project_teams", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_teams_on_project_id", using: :btree
+    t.index ["user_id"], name: "index_project_teams_on_user_id", using: :btree
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.date     "campaign_start"
+    t.date     "campaign_end"
+    t.text     "brief"
+    t.string   "brand"
+    t.string   "status"
+    t.string   "string"
+    t.date     "deadline"
+    t.string   "final_file"
+    t.string   "ad_networks"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -28,8 +71,19 @@ ActiveRecord::Schema.define(version: 20170307113116) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
+    t.string   "last_name"
+    t.string   "company"
+    t.string   "job_title"
+    t.string   "avatar"
+    t.text     "bio"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "comments", "images"
+  add_foreign_key "comments", "users"
+  add_foreign_key "images", "projects"
+  add_foreign_key "project_teams", "projects"
+  add_foreign_key "project_teams", "users"
 end
