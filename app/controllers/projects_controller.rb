@@ -3,7 +3,8 @@ class ProjectsController < ApplicationController
 
 
   def index
-    @projects = Project.where()
+
+    @projects = Project.joins(:project_teams).where('project_teams.user_id = ?', 4)
   end
 
 
@@ -21,15 +22,16 @@ class ProjectsController < ApplicationController
 
 
   def create
-    @project = Project.new(project_params)
+    @project = Project.new(project_params, status: "live" )
 
     respond_to do |format|
       if @project.save
+        project_link = ProjectTeam.new(user_id: current_user.id, project_id: @project.id, admin: true)
+        if project_link.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render :show, status: :created, location: @project }
+        end
       else
         format.html { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -64,6 +66,13 @@ class ProjectsController < ApplicationController
 
 
     def project_params
-      params.fetch(:project, {})
+       params.require(:project).permit(:name, :brief, :campaign_start, :campaign_end, :brand, :deadline, :ad_networks)
     end
 end
+
+
+
+
+
+
+
