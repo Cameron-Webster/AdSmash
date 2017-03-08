@@ -1,0 +1,29 @@
+
+<%= form_for :search_bar, :url => projects_path, method: :get do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+
+
+  <%= f.select :brand, collection: Project::BRANDS %>
+
+  <%= f.select :status, collection: Project::STATUSES %>
+
+
+
+  <%= f.submit  "Search!"%>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+

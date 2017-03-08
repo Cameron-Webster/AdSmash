@@ -1,4 +1,9 @@
 class Project < ApplicationRecord
+  STATUSES = ["live", "closed"]
+  BRANDS = ["Coca-cola", "Budweiser", "Glenfiddich", "The Glenlivet"]
+
+
+
   has_many :project_teams
   has_many :users, through: :project_team
   has_many :images

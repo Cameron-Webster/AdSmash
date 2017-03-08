@@ -3,11 +3,37 @@ class ProjectsController < ApplicationController
 
 
   def index
-
     @projects = Project.joins(:project_teams).where('project_teams.user_id = ?', current_user.id)
 
-  end
+    unless params["search_bar"].nil?
+      if params["search_bar"][:name]
+        @projects = @projects.where("name LIKE ?", "%#{params["search_bar"][:name]}%")
+      end
+    end
 
+    unless params["search_bar"].nil?
+      if params["search_bar"][:brand]
+        @projects = @projects.where("brand LIKE ?", "%#{params["search_bar"][:brand].downcase.titleize}%")
+
+      end
+    end
+
+    unless params["search_bar"].nil?
+      if params["search_bar"][:status]
+        @projects = @projects.where("status LIKE ?", "%#{params["search_bar"][:status]}%")
+      end
+    end
+
+     unless params["search_bar"].nil?
+      if params["search_bar"][:email]
+        @projects = User.find_by(email: params["search_bar"][:email]).projects
+      end
+
+    end
+
+
+
+  end
 
   def show
   end
