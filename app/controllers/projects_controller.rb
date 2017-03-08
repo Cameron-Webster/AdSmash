@@ -64,6 +64,21 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def invite
+    first_name = params[:name]
+    surname = params[:last_name]
+    admin = params[:admin]
+    project = params[:project_id]
+    @user = User.where('name = first_name and last_name = surname')
+    if @user.count == 1
+        ProjectTeam.create(user_id: @user.id, project_id: project)
+    else
+      @user = "none"
+
+    end
+
+  end
+
   private
 
     def set_project
