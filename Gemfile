@@ -27,6 +27,11 @@ group :development, :test do
   gem 'spring'
   gem 'listen', '~> 3.0.5'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'carrierwave', '~> 0.11.2'
+  gem 'cloudinary'
+  gem 'omniauth-linkedin-oauth2'
+  gem 'omniauth'
+  gem 'omniauth-linkedin'
 end
 
 
