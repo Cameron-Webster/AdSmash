@@ -7,6 +7,7 @@ gem 'pg'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
+gem 'omniauth-linkedin'
 gem 'redis'
 
 gem 'sass-rails'
@@ -29,9 +30,9 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'carrierwave', '~> 0.11.2'
   gem 'cloudinary'
-  gem 'omniauth-linkedin-oauth2'
-  gem 'omniauth'
-  gem 'omniauth-linkedin'
+  #gem 'omniauth-linkedin-oauth2'
+  #gem 'omniauth'
+
 end
 
 
