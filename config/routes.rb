@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
 
-  resources :projects, param: :project_id
+  resources :projects
+
 
   resources :images, only: [:show, :create, :delete], param: :project_id do
     resources :comments, param: :user_id, except: [:new,:edit,:index,:userspdate,:destroy]
