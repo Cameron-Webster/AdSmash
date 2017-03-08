@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   def index
 
-    @projects = Project.joins(:project_teams).where('project_teams.user_id = ?', 4)
+    @projects = Project.joins(:project_teams).where('project_teams.user_id = ?', current_user.id)
   end
 
 
