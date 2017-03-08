@@ -29,10 +29,11 @@ class ProjectsController < ApplicationController
       if @project.save
         project_link = ProjectTeam.new(user_id: current_user.id, project_id: @project.id, admin: true)
         if project_link.save
-        format.html { redirect_to projects_path, notice: 'Project was successfully created.' }
+          Image.new(project_id: @project.id, photo: 'images/placeholder.jpg')
+          format.html { redirect_to projects_path, notice: 'Project was successfully created.' }
         end
       else
-        format.html { render :new }
+          format.html { render :new }
       end
     end
   end
