@@ -31,6 +31,7 @@ validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z
                            remote_avatar_url: auth[:info][:image],
                            company: "Undefined",
                            job_title: "Undefined",
+                           provider: 'linkedin',
                            password:Devise.friendly_token[0,20],)
         return user
       end
