@@ -7,7 +7,7 @@ class Project < ApplicationRecord
   validates :name, presence: true
   validates :campaign_start, presence: true
   validates :deadline, presence: true
-  validates :status, presence: true
+  # validates :status, presence: true - QUESTION: should this be validated? Is there a way?
   validates :brief, presence: true
   validate :compare_date
 end
