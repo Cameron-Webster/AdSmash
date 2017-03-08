@@ -23,18 +23,23 @@ class ProjectsController < ApplicationController
 
 
   def create
-    @project = Project.new(project_params, status: "live" )
+    @project = Project.new(project_params)
+
 
     respond_to do |format|
       if @project.save
         project_link = ProjectTeam.new(user_id: current_user.id, project_id: @project.id, admin: true)
         if project_link.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to projects_path, notice: 'Project was successfully created.' }
         end
       else
         format.html { render :new }
       end
     end
+  end
+
+  def show
+
   end
 
 
@@ -67,7 +72,7 @@ class ProjectsController < ApplicationController
 
 
     def project_params
-       params.require(:project).permit(:name, :brief, :campaign_start, :campaign_end, :brand, :deadline, :ad_networks)
+       params.require(:project).permit(:name, :brief, :campaign_start, :campaign_end, :brand, :deadline, :ad_networks, :status)
     end
 end
 

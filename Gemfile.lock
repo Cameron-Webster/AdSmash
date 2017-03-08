@@ -190,7 +190,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass
   devise
-  faker (~> 1.4, >= 1.4.3)
+  faker
   figaro
   font-awesome-sass
   jbuilder (~> 2.0)

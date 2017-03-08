@@ -6,17 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+require 'faker'
+User.destroy_all
 Project.destroy_all
+ProjectTeam.destroy_all
 
-x = User.create(name: "john", last_name: "gary", company: "faker company", password: "123456", email: "john@john.com")
-User.create(name: "pete", last_name: "james", company: "faker company", password: "123456", email: "gary@john.com")
-User.create(name: "malcom", last_name: "lawrence", company: "faker company", password: "123456", email: "je@john.com")
+10.times do
 
-v = Project.create(name: "Santa Claus Cocacola", brand: "Coke", campaign_start: "2017-06-07", deadline: "2017-05-06", status: "live", brief: "some text")
-ProjectTeam.create(user_id: x.id, project_id: v.id, admin: true)
-
-z = Project.create(name: "Fanta your life" , brand: "Fanta"  ,campaign_start: "2017-08-05", deadline: "2017-06-02", status: "live", brief: "fanta is great")
-ProjectTeam.create(user_id: x.id, project_id: z.id, admin: false)
-
-w = Project.create(name: "Fanta is lovely" , brand: "Fanta"  ,campaign_start: "2017-09-05", deadline: "2017-07-02", status: "live", brief: "fanta is awesome")
-ProjectTeam.create(user_id: x.id, project_id: w.id, admin: false)
+x = User.create(name: Faker::Name.first_name, last_name: Faker::Name.last_name, company: "faker company", password: "123456", email: Faker::Internet.email)
+  3.times do
+    v = Project.create(name: Faker::Beer.name, campaign_start: "2017-06-07", deadline: "2017-05-06", brief: Faker::Lorem.paragraph(2))
+    ProjectTeam.create(user_id: x.id, project_id: v.id, admin: true)
+  end
+end
+>>>>>>> origin
