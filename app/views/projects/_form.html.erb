@@ -2,9 +2,19 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :brand %>
+    <%= f.input :brief %>
+    <%= f.input :status, as: :hidden, default: "live" %>
+    <%= f.input :deadline, as: :date %>
+    <%= f.input :campaign_start, as: :date %>
+    <%= f.input :campaign_end, as: :date %>
+    <%= f.input :ad_networks %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
 <% end %>
+
+
