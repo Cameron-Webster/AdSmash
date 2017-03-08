@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+root to: 'pages#home'
+devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',registrations: 'users' }
+
 
 
   devise_for :users
@@ -11,6 +14,7 @@ Rails.application.routes.draw do
     resources :images, only: [:show, :create, :destroy, :new] do
       resources :comments,  except: [:edit,:show,:update]
     end
+
   end
 
   # post '/projects/:id', to: 'projects#invite'
