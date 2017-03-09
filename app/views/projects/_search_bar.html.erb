@@ -1,16 +1,9 @@
 
 <%= form_for :search_bar, :url => projects_path, method: :get do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-
-   <%= f.label :brand %>
-  <%= f.text_field :brand %>
 
 
-  <%= f.select :status, collection: Project::STATUSES %>
+
+
 
   <%= text_field_tag :date_range, :date_range, class: "my_class", name: "daterange", value: "#{DateTime.now.strftime("%m/%d/%Y")} - #{(DateTime.now+1).strftime("%m/%d/%Y")}" %>
 
