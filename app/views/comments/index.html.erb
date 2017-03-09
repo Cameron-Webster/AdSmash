@@ -1,2 +1,21 @@
 <h1>Comments#index</h1>
 <p>Find me in app/views/comments/index.html.erb</p>
+
+
+<%= cl_image_tag(@image.photo, width: 200, height: 200, crop: :fill) %> <br>
+
+
+
+<%  @comments.each do |comment|   %>
+<%=comment.user.name %> <br>
+<%=comment.user.last_name %> <br>
+<%= comment.created_at %> <br>
+
+<%= comment.content %> <br>
+<%= comment.attachment %> <br>
+
+<% end  %>
+
+<%= render'form',comment: @comment %>
+
+<%=link_to "Back to Project", project_path(@project)  %>
