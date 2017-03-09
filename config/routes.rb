@@ -5,8 +5,6 @@ devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'
 
 
 
-  devise_for :users
-  root to: 'pages#home'
 
 
 
@@ -14,6 +12,7 @@ devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'
     resources :images, only: [:show, :create, :destroy, :new] do
       resources :comments,  except: [:edit,:show,:update]
     end
+
 
   end
 
