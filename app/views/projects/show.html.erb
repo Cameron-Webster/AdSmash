@@ -1,9 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Edit', edit_project_path(@project) %> <br>
+<%= link_to 'Back', projects_path %> <br>
 
-<%= link_to "New Image", new_project_image_path(@project) %>
+<%= link_to "New Image", new_project_image_path(@project) %> <br>
+
+
 
 
 
@@ -11,12 +13,21 @@
 
 <% if idx == 0 %>
 
-<%= cl_image_tag(img.photo, width: 200, height: 200, crop: :fill) %>
-<%= link_to 'Destroy', project_image_path(img), method: :delete %>
+
+
+
+<%= cl_image_tag(img.photo, width: 200, height: 200, crop: :fill) %> <br>
+
+
+<%= link_to('View comments',project_image_comments_path(@project,img)) %> <br>
+
+<%= link_to 'Destroy', project_image_path(img), method: :delete %> <br>
 
 <% else %>
 
-<%= cl_image_tag(img.photo, width: 100, height: 100, crop: :fill) %>
+<%= cl_image_tag(img.photo, width: 100, height: 100, crop: :fill) %> <br>
+
+<%= link_to('View comments',project_image_comments_path(@project,img)) %> <br>
 
 
 <% end %>

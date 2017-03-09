@@ -4,9 +4,20 @@ class ProjectsController < ApplicationController
 
   def index
 
-    @projects = Project.joins(:project_teams).where('project_teams.user_id = ?', current_user.id)
-  end
+    @projects = current_user.projects
 
+    unless params["global_search"].nil?
+      @projects = @projects.global_search params['global_search']['content']
+    end
+
+    unless params["daterange"].nil?
+      unless  params[:daterange].empty?
+        @dates = datepicker_into_object(params[:daterange])
+        @projects = @projects.where("deadline > ? AND deadline < ?", @dates[0] , @dates[1])
+      end
+    end
+
+  end
 
   def show
   end
@@ -118,6 +129,10 @@ class ProjectsController < ApplicationController
 
     def project_params
        params.require(:project).permit(:name, :brief, :campaign_start, :campaign_end, :brand, :deadline, :ad_networks, :status)
+    end
+
+    def datepicker_into_object(dates)
+     dates.split("-").map{|date| Date.strptime(date.strip,"%m/%d/%Y")}
     end
 end
 

@@ -7,6 +7,7 @@ class ImagesController < ApplicationController
     @project= Project.find(params[:project_id])
     @image = Image.new
 
+
   end
 
   def create

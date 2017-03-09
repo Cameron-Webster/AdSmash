@@ -12,6 +12,7 @@ devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'
       resources :comments,  except: [:edit,:show,:update]
     end
 
+
   end
 
   post '/projects/:id/invite', to: 'projects#invite', as: 'send_invitation'
