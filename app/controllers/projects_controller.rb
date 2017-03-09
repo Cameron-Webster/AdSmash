@@ -3,36 +3,34 @@ class ProjectsController < ApplicationController
 
 
   def index
+
     @projects = Project.joins(:project_teams).where('project_teams.user_id = ?', current_user.id)
 
     unless params["search_bar"].nil?
-      if params["search_bar"][:name]
+
+      unless params["search_bar"][:name].empty?
         @projects = @projects.where("name LIKE ?", "%#{params["search_bar"][:name]}%")
       end
-    end
 
-    unless params["search_bar"].nil?
-      if params["search_bar"][:brand]
+      unless params["search_bar"][:brand].empty?
         @projects = @projects.where("brand LIKE ?", "%#{params["search_bar"][:brand].downcase.titleize}%")
-
       end
-    end
 
-    unless params["search_bar"].nil?
-      if params["search_bar"][:status]
-        @projects = @projects.where("status LIKE ?", "%#{params["search_bar"][:status]}%")
-      end
-    end
 
-     unless params["search_bar"].nil?
-      if params["search_bar"][:email]
+      # unless params["search_bar"][:status].empty?
+      #   @projects = @projects.where("status LIKE ?", "%#{params["search_bar"][:status]}%")
+      # end
+
+
+      unless params["search_bar"][:email].empty?
         @projects = User.find_by(email: params["search_bar"][:email]).projects
       end
 
+      unless  params[:daterange].empty?
+        @dates = datepicker_into_object(params[:daterange])
+        @projects = @projects.where("deadline > ? AND deadline < ?", @dates[0] , @dates[1])
+      end
     end
-
-
-
   end
 
   def show
@@ -115,6 +113,10 @@ class ProjectsController < ApplicationController
 
     def project_params
        params.require(:project).permit(:name, :brief, :campaign_start, :campaign_end, :brand, :deadline, :ad_networks, :status)
+    end
+
+    def datepicker_into_object(dates)
+     dates.split("-").map{|date| Date.strptime(date.strip,"%m/%d/%Y")}
     end
 end
 

@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-  STATUSES = ["live", "closed"]
+  STATUSES = ["closed", "live"]
   BRANDS = ["Coca-cola", "Budweiser", "Glenfiddich", "The Glenlivet"]
 
 

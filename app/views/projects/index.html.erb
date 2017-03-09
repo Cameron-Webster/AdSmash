@@ -16,6 +16,7 @@
       <tr>
       <td> <%= project.name %></td>
       <td> <%= project.brand %> </td>
+      <td> <%= project.deadline %> </td>
        <td> <% project.project_teams.each do |x|  %></td>
         <%= x.user.name  %>
         <% end %>

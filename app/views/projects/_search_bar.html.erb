@@ -6,16 +6,19 @@
   <%= f.label :email %>
   <%= f.text_field :email %>
 
+   <%= f.label :brand %>
+  <%= f.text_field :brand %>
 
-
-  <%= f.select :brand, collection: Project::BRANDS %>
 
   <%= f.select :status, collection: Project::STATUSES %>
+
+  <%= text_field_tag :date_range, :date_range, class: "my_class", name: "daterange", value: "#{DateTime.now.strftime("%m/%d/%Y")} - #{(DateTime.now+1).strftime("%m/%d/%Y")}" %>
 
 
 
   <%= f.submit  "Search!"%>
 <% end %>
+
 
 
 
