@@ -5,9 +5,6 @@ devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'
 
 
 
-  devise_for :users
-  root to: 'pages#home'
-
 
 
   resources :projects do
@@ -17,7 +14,8 @@ devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'
 
   end
 
-  # post '/projects/:id', to: 'projects#invite'
+  post '/projects/:id/invite', to: 'projects#invite', as: 'send_invitation'
+  post '/projects/:id/invite/send', to: 'projects#invite_send', as: 'send_invitations'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

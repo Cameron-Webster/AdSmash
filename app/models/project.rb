@@ -3,6 +3,7 @@ class Project < ApplicationRecord
   has_many :users, through: :project_team
   has_many :images
   has_many :comments, through: :images
+  has_many :temp_users
 
   validates :name, presence: true
   validates :campaign_start, presence: true
