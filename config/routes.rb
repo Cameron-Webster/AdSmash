@@ -7,7 +7,6 @@ devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'
 
 
 
-
   resources :projects do
     resources :images, only: [:show, :create, :destroy, :new] do
       resources :comments,  except: [:edit,:show,:update]

@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+
   include PgSearch
   pg_search_scope :global_search, against: [ :name, :brand, :brief ],
   associated_against: {
@@ -11,9 +12,10 @@ class Project < ApplicationRecord
 
 
 
-  has_many :project_teams
+  has_many :project_teams, dependent: :destroy
   has_many :users, through: :project_teams
-  has_many :images
+  has_many :images, dependent: :destroy
+
   has_many :comments, through: :images
 
   validates :name, presence: true

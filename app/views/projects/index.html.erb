@@ -15,12 +15,23 @@
     <% @projects.each do |project| %>
       <tr>
       <td> <%= project.name %></td>
-      <td> <%= project.brand %> </td>
-      <td> <%= project.deadline %> </td>
+
+
+      <%if project.images.last == nil %>
+
+       <td> <%= cl_image_tag('https://dummyimage.com/200x200/000/fff&text=No+Image+Available', width: 200, height: 200, crop: :fill) %> <br></td>
+
+       <%else  %>
+
+      <td> <%= cl_image_tag(project.images.last.photo, width: 200, height: 200, crop: :fill) %> <br></td>
+
+      <%end  %>
+
        <td> <% project.project_teams.each do |x|  %></td>
-        <%= x.user.name  %>
-        <% end %>
-        <td> <%= project.status %></td>
+       <td><%= x.user.name  %></td>
+
+       <% end %>
+
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
