@@ -1,0 +1,27 @@
+<p>This is the invite veiw </p>
+
+<% if @users.any? %>
+
+<p>Please select the correct user</p>
+
+<ul>
+
+<% @users.each do |user| %>
+
+<li><%= link_to user.name, send_existing_path(@project, user), method: :post %> </li>
+
+<% end %>
+
+</ul>
+
+<% else  %>
+
+<p>Sorry there are no users with those credentials use the link below to invite by email</p>
+
+<%= form_tag send_invitations_path do %>
+  <%= text_field_tag :search, @search_term %>
+  <%= submit_tag "Invite" %>
+<% end %>
+
+
+<% end %>
