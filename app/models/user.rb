@@ -18,6 +18,8 @@ has_many :projects, through: :project_teams
 
 validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
+
+
 #---------------------------
   def self.find_for_linkedin_oauth(auth, signed_in_resource=nil)
       user = User.where(email: auth[:info][:email]).first
@@ -32,7 +34,7 @@ validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z
                            company: "Undefined",
                            job_title: "Undefined",
                            provider: 'linkedin',
-                           password:Devise.friendly_token[0,20],)
+                           password:Devise.friendly_token[0,20])
         return user
       end
   end

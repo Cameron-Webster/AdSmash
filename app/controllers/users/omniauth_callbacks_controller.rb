@@ -5,6 +5,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def linkedin
     user = User.find_for_linkedin_oauth(request.env['omniauth.auth'])
+    mail = TempUser.find_by(email: user.email)
+      if mail
+        ProjectTeam.create(user_id: user.id, project_id: mail.project_id)
+      end
 
     if user.persisted?
       sign_in_and_redirect user, event: :authentication

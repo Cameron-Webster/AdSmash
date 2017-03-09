@@ -71,10 +71,22 @@ class ProjectsController < ApplicationController
     @project = params[:id]
 
     if @search_term.match(/@/).present?
-      @users = User.where('email = ?', search_term)
+      @users = User.where('email = ?', @search_term)
     else
       search = @search_term.split(' ')
        @users = User.where('name = ? and last_name = ?', search[0], search[1])
+    end
+
+  end
+
+  def invite_existing
+
+    project_link = ProjectTeam.new(project_id: params[:id], user_id: params[:user])
+
+    if project_link.save
+     redirect_to project_path(params[:id]), notice: 'User added to Project'
+    else
+      redirect_to project_path(params[:id]), alert: 'User not added to Project'
     end
 
   end
