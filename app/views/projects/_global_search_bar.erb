@@ -1,0 +1,5 @@
+
+<%= simple_form_for :global_search,  :url => projects_path, method: :get, html: {class: 'form-inline'} do |f| %>
+  <%= f.input :content %>
+  <%= f.submit "search!", class: "btn btn-primary" %>
+<% end %>

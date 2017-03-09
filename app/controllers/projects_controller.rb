@@ -4,33 +4,19 @@ class ProjectsController < ApplicationController
 
   def index
 
-    @projects = Project.joins(:project_teams).where('project_teams.user_id = ?', current_user.id)
+    @projects = current_user.projects
 
-    unless params["search_bar"].nil?
+    unless params["global_search"].nil?
+      @projects = @projects.global_search params['global_search']['content']
+    end
 
-      unless params["search_bar"][:name].empty?
-        @projects = @projects.where("name LIKE ?", "%#{params["search_bar"][:name]}%")
-      end
-
-      unless params["search_bar"][:brand].empty?
-        @projects = @projects.where("brand LIKE ?", "%#{params["search_bar"][:brand].downcase.titleize}%")
-      end
-
-
-      # unless params["search_bar"][:status].empty?
-      #   @projects = @projects.where("status LIKE ?", "%#{params["search_bar"][:status]}%")
-      # end
-
-
-      unless params["search_bar"][:email].empty?
-        @projects = User.find_by(email: params["search_bar"][:email]).projects
-      end
-
+    unless params["daterange"].nil?
       unless  params[:daterange].empty?
         @dates = datepicker_into_object(params[:daterange])
         @projects = @projects.where("deadline > ? AND deadline < ?", @dates[0] , @dates[1])
       end
     end
+
   end
 
   def show
