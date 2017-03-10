@@ -16,11 +16,14 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :company, presence: true
 
-  has_many :project_teams, dependent: :destroy
-  has_many :comments
-  has_many :projects, through: :project_teams
 
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+
+has_many :project_teams, dependent: :destroy
+has_many :comments
+has_many :projects, through: :project_teams
+has_many :notifications, foreign_key: :recipient_id
+
+validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
   before_save :normalize
 

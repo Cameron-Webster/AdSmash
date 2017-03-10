@@ -6,6 +6,8 @@
     <%= render 'search_people_bar' %>
 
     <%= render 'search_bar' %>
+
+
 <table>
   <thead>
     <tr>
@@ -16,8 +18,12 @@
   <tbody>
 
     <% @projects.each do |project| %>
+
+    <% count = 0 %>
+    <%  @notifications.each {|n| count = count + 1 if n.notifiable_id == project.id} %>
+
       <tr>
-      <td> <%= project.name %></td>
+      <td> <%= project.name %> <%= count %></td>
 
 
       <%if project.images.last == nil %>

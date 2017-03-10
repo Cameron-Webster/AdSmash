@@ -13,6 +13,13 @@ class CommentsController < ApplicationController
   end
 
   def create
+
+    @project = Project.find(params[:project_id])
+
+    @project.users.each do |user|
+      Notification.create(recipient: user, actor: current_user, action: "posted", notifiable: @project)
+
+    end
    @comment = Comment.new(comment_params)
    @comment.image_id = params[:image_id]
    @comment.user_id = current_user.id
