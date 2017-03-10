@@ -22,18 +22,19 @@ class CommentsController < ApplicationController
       flash[:notice]  = 'Comment added'
        @project = Project.find(params[:project_id])
 
-    @project.users.each do |user|
-      Notification.create(recipient: user, actor: current_user, action: "posted", notifiable: @project)
+      @project.users.each do |user|
+        Notification.create(recipient: user, actor: current_user, action: "posted", notifiable: @project)
+      end
     else
       flash[:error]  = 'Comment not saved'
     end
     redirect_to project_path(@project)
 
 
-   
+
 
     end
- 
+
 
 
 def destroy
