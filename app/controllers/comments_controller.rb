@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
-  before_action :set_image, only: [:index]
-  before_action :set_project, only: [:index]
+  before_action :set_image, only: [:create]
+  before_action :set_project, only: [:index, :create]
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   def index
-    @comments = Comment.where(image: @image)
+
     @comment = Comment.new
   end
 
@@ -13,16 +13,17 @@ class CommentsController < ApplicationController
   end
 
   def create
-   @comment = Comment.new(comment_params)
-   @comment.image_id = params[:image_id]
-   @comment.user_id = current_user.id
-   @comment.likes = 0
-   if @comment.save
-     redirect_to project_image_comments_path
-  else
-    redirect_to project_path(params[:project_id]), alert: 'Comment unsuccessful please try again.'
+    @comment = Comment.new(comment_params)
+    @comment.image_id = params[:image_id]
+    @comment.user_id = current_user.id
+    @comment.likes = 0
+    if @comment.save
+      flash[:notice]  = 'Comment added'
+    else
+      flash[:error]  = 'Comment not saved'
+    end
+    redirect_to project_path(@project)
   end
-end
 
 
 def destroy
