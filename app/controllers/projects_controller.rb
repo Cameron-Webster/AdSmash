@@ -10,6 +10,16 @@ class ProjectsController < ApplicationController
       @projects = @projects.global_search params['global_search']['content']
     end
 
+    unless params["search_people"].nil?
+      query = params[:search_people][:people].downcase
+      list = []
+      @projects.each do |project|
+        list << project if project.users.any? { |user| user.name == query || user.last_name == query || user.email == query }
+      end
+      @projects = list
+    end
+      # (User.global_search "bailey_ernser@effertz.net")[0].projects
+
     unless params["daterange"].nil?
       unless  params[:daterange].empty?
         @dates = datepicker_into_object(params[:daterange])
