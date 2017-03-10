@@ -4,6 +4,9 @@ class ProjectsController < ApplicationController
 
   def index
 
+      @notifications = Notification.where(recipient: current_user).unread
+
+
     @projects = current_user.projects
 
     unless params["global_search"].nil?
