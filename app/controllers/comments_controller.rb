@@ -13,17 +13,27 @@ class CommentsController < ApplicationController
   end
 
   def create
+
     @comment = Comment.new(comment_params)
     @comment.image_id = params[:image_id]
     @comment.user_id = current_user.id
     @comment.likes = 0
     if @comment.save
       flash[:notice]  = 'Comment added'
+       @project = Project.find(params[:project_id])
+
+    @project.users.each do |user|
+      Notification.create(recipient: user, actor: current_user, action: "posted", notifiable: @project)
     else
       flash[:error]  = 'Comment not saved'
     end
     redirect_to project_path(@project)
-  end
+
+
+   
+
+    end
+ 
 
 
 def destroy

@@ -4,11 +4,24 @@ class ProjectsController < ApplicationController
 
   def index
 
+      @notifications = Notification.where(recipient: current_user).unread
+
+
     @projects = current_user.projects
 
     unless params["global_search"].nil?
       @projects = @projects.global_search params['global_search']['content']
     end
+
+    unless params["search_people"].nil?
+      query = params[:search_people][:people].downcase
+      list = []
+      @projects.each do |project|
+        list << project if project.users.any? { |user| user.name == query || user.last_name == query || user.email == query }
+      end
+      @projects = list
+    end
+      # (User.global_search "bailey_ernser@effertz.net")[0].projects
 
     unless params["daterange"].nil?
       unless  params[:daterange].empty?
