@@ -57,6 +57,8 @@
 <br>
 <br>
 
+
+
 <% content_for :after_js do %>
 <script>
   $(".comments").on('click', function(){
@@ -65,8 +67,15 @@
     $('#main-image div').css("display", "block");
     $(".small-image:first").addClass('large-image').removeClass('small-image');
   });
+
+      $(window).unload(function() {
+  <%= current_user.notifications.where('notifiable_id = ?', @project.id).destroy_all %>;
+
+});
 </script>
 <% end %>
+
+
 
 
 

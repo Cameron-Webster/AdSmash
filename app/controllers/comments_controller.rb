@@ -24,6 +24,7 @@ class CommentsController < ApplicationController
 
       @project.users.each do |user|
         Notification.create(recipient: user, actor: current_user, action: "posted", notifiable: @project)
+
       end
     else
       flash[:error]  = 'Comment not saved'
