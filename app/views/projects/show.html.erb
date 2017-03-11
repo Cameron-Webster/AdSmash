@@ -1,38 +1,42 @@
-<p id="notice"><%= notice %></p>
+
 
 
 <%= link_to 'Back', projects_path %> <br>
 <%= link_to 'Edit project', edit_project_path(@project) %> <br>
 <%= link_to "New Image", new_project_image_path(@project) %> <br>
-<ul>
+
+
   <% @project.images.sort {|x, y| y[:created_at] <=> x[:created_at]}.each_with_index do |img, idx| %>
-  <li style="background: #ededed; margin: 20px 0; padding: 15px">
+<ul>
     <% if idx == 0 %>
     <div id="main-image">
-      ID.<%= img.id %>
-
+      <li style="background: #ededed; margin: 20px 0; padding: 15px">
       <%= img.created_at.strftime("%Y-%m-%d") %>
       <%= cl_image_tag(img.photo, width: 300, crop: :fill, class: 'large-image') %>
       <%= link_to 'Destroy', project_image_path(img), method: :delete %> <br>
+
       <ul>
         <% img.comments.each do |com| %>
         <li><%= com.content %></li>
         <p> <%= com.likes %> Like </p>
         <% end  %>
       </ul>
+
       <%= render 'comments/form', image: img %>
     </div>
     <% end %>
   </li>
+</ul>
   <% end %>
 
 
   <% @project.images.sort {|x, y| y[:created_at] <=> x[:created_at]}.each_with_index do |img, idx| %>
-
-      <div class="comments">
-      ID.<%= img.id %>
+    <ul>
+     <div class="comments">
+      <li style="background: #ededed; margin: 20px 0; padding: 15px">
       <%= img.created_at.strftime("%Y-%m-%d") %>
-      <%= cl_image_tag(img.photo, width: 300, crop: :fill, class: 'small-image') %>
+       <%= cl_image_tag(img.photo, width: 300, crop: :fill, class: 'small-image') %>
+
 
       <div style="display: none">
         <%= link_to 'Destroy', project_image_path(img), method: :delete %> <br>
@@ -44,14 +48,11 @@
         </ul>
         <%= render 'comments/form', image: img %>
       </div>
+     </ul>
     </div>
   <% end %>
 
 
-
-
-
-</ul>
 <%= render 'sign_up_form' %>
 
 <br>
