@@ -1,10 +1,10 @@
 module ApplicationHelper
 
-  def destroy_notifications
+  def destroy_notifications(project)
 
 
 
-   notifics = current_user.notifications.where('notifiable_id = ?', project)
+   current_user.notifications.where('notifiable_id = ?', project).destroy_all
 
   end
 end
