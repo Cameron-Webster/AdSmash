@@ -3,32 +3,21 @@ class ProjectsController < ApplicationController
 
 
   def index
-
-      @notifications = Notification.where(recipient: current_user).unread
-
-
+    @notifications = Notification.where(recipient: current_user).unread
     @projects = current_user.projects
-
-    unless params["global_search"].nil?
-      @projects = @projects.global_search params['global_search']['content']
-    end
-
-    unless params["search_people"].nil?
-      query = params[:search_people][:people].downcase
-      list = []
-      @projects.each do |project|
-        list << project if project.users.any? { |user| user.name == query || user.last_name == query || user.email == query }
-      end
-      @projects = list
-    end
-      # (User.global_search "bailey_ernser@effertz.net")[0].projects
-
-    unless params["daterange"].nil?
-      unless  params[:daterange].empty?
-        @dates = datepicker_into_object(params[:daterange])
-        @projects = @projects.where("deadline > ? AND deadline < ?", @dates[0] , @dates[1])
+    if params[:filter]
+      if params[:filter] == "live"
+        @projects = @projects.where("status LIKE ?", "live")
+      elsif params[:filter] == "closed"
+        @projects = @projects.where("status LIKE ?", "closed")
+      else
+        search_people_list(params[:filter])
       end
     end
+    search_content
+    search_people
+    search_date
+    list_colleagues
 
   end
 
@@ -126,11 +115,57 @@ class ProjectsController < ApplicationController
       UserMailer.invite(email, @project).deliver_now
 
       redirect_to project_path(@project), notice: 'invite sent'
-
-
   end
 
 
+  def search_content
+    unless params["global_search"].nil?
+      @projects = @projects.global_search params['global_search']['content']
+    end
+  end
+
+  def search_people
+     unless params["search_people"].nil?
+      query = params[:search_people][:people].downcase || params[format]
+      list = []
+      @projects.each do |project|
+        list << project if project.users.any? { |user| user.name == query || user.last_name == query || user.email == query }
+      end
+      @projects = list
+    end
+  end
+
+    def search_people_list(query)
+      list = []
+      @projects.each do |project|
+        list << project if project.users.any? { |user| user.name == query || user.last_name == query || user.email == query }
+      end
+      @projects = list
+  end
+
+
+  def search_date
+    unless params["daterange"].nil?
+      unless  params[:daterange].empty?
+        @dates = datepicker_into_object(params[:daterange])
+        @projects = @projects.where("deadline > ? AND deadline < ?", @dates[0] , @dates[1])
+      end
+    end
+  end
+
+
+  def list_colleagues
+    @users_list = []
+    current_user.projects.each do |project|
+      @users_list << project.users
+      @users_list2 = @users_list.flatten(1)
+    end
+    @colleagues_names = []
+    @users_list2.each do |user|
+       @colleagues_names << [user.name, user.last_name].join(" ") if user != current_user
+    end
+    @colleagues_names.uniq!
+  end
 
 
   private
