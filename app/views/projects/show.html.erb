@@ -1,38 +1,82 @@
-<p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> <br>
+
+
 <%= link_to 'Back', projects_path %> <br>
-
+<%= link_to 'Edit project', edit_project_path(@project) %> <br>
 <%= link_to "New Image", new_project_image_path(@project) %> <br>
 
 
+  <% @project.images.sort {|x, y| y[:created_at] <=> x[:created_at]}.each_with_index do |img, idx| %>
+<ul>
+    <% if idx == 0 %>
+    <div id="main-image">
+      <li style="background: #ededed; margin: 20px 0; padding: 15px">
+      <%= img.created_at.strftime("%Y-%m-%d") %>
+      <%= cl_image_tag(img.photo, width: 300, crop: :fill, class: 'large-image') %>
+      <%= link_to 'Destroy', project_image_path(img), method: :delete %> <br>
+
+      <ul>
+        <% img.comments.each do |com| %>
+        <li><%= com.content %></li>
+        <p> <%= com.likes %> Like </p>
+        <% end  %>
+      </ul>
+
+      <%= render 'comments/form', image: img %>
+    </div>
+    <% end %>
+  </li>
+</ul>
+  <% end %>
 
 
-
-<% @project.images.sort {|x, y| y[:created_at] <=> x[:created_at]}.each_with_index do |img, idx| %>
-
-<% if idx == 0 %>
-
-
-
-
-<%= cl_image_tag(img.photo, width: 200, height: 200, crop: :fill) %> <br>
+  <% @project.images.sort {|x, y| y[:created_at] <=> x[:created_at]}.each_with_index do |img, idx| %>
+    <ul>
+     <div class="comments">
+      <li style="background: #ededed; margin: 20px 0; padding: 15px">
+      <%= img.created_at.strftime("%Y-%m-%d") %>
+       <%= cl_image_tag(img.photo, width: 300, crop: :fill, class: 'small-image') %>
 
 
-<%= link_to('View comments',project_image_comments_path(@project,img)) %> <br>
+      <div style="display: none">
+        <%= link_to 'Destroy', project_image_path(img), method: :delete %> <br>
+        <ul>
+          <% img.comments.each do |com| %>
+          <li><%= com.content %>  </li>
+          <p> <%= com.likes %> Like </p>
+          <% end  %>
+        </ul>
+        <%= render 'comments/form', image: img %>
+      </div>
+     </ul>
+    </div>
+  <% end %>
 
-<%= link_to 'Destroy', project_image_path(img), method: :delete %> <br>
-
-<% else %>
-
-<%= cl_image_tag(img.photo, width: 100, height: 100, crop: :fill) %> <br>
-
-<%= link_to('View comments',project_image_comments_path(@project,img)) %> <br>
-
-
-<% end %>
-
-<% end %>
 
 <%= render 'sign_up_form' %>
+
+<br>
+<br>
+
+
+
+<% content_for :after_js do %>
+<script>
+  $(".comments").on('click', function(){
+    var comments = $(this).html();
+    $('#main-image').html(comments);
+    $('#main-image div').css("display", "block");
+    $(".small-image:first").addClass('large-image').removeClass('small-image');
+  });
+
+      $(window).unload(function() {
+  <%= current_user.notifications.where('notifiable_id = ?', @project.id).destroy_all %>;
+
+});
+</script>
+<% end %>
+
+
+
+
 

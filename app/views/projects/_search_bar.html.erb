@@ -1,13 +1,7 @@
 
 <%= form_for :search_bar, :url => projects_path, method: :get do |f| %>
 
-
-
-
-
   <%= text_field_tag :date_range, :date_range, class: "my_class", name: "daterange", value: "#{DateTime.now.strftime("%m/%d/%Y")} - #{(DateTime.now+1).strftime("%m/%d/%Y")}" %>
-
-
 
   <%= f.submit  "Search!"%>
 <% end %>

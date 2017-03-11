@@ -5,7 +5,7 @@ devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'
 
 
 
-
+  resources :notifications
 
   resources :projects do
     resources :images, only: [:show, :create, :destroy, :new] do

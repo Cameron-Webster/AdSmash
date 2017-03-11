@@ -1,8 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Projects</h1>
+<h1>Projects List</h1>
     <%= render 'global_search_bar' %>
+
+    <%= render 'search_people_bar' %>
+
     <%= render 'search_bar' %>
+
+
+
+    <% x = request.referrer %>
+
+
+
+<!--     @notifications.each do |notification|
+
+if request.referrer == project_path(notification.notifiable)
+
+end -->
+
+
 <table>
   <thead>
     <tr>
@@ -13,8 +30,12 @@
   <tbody>
 
     <% @projects.each do |project| %>
+
+    <% count = 0 %>
+    <%  @notifications.each {|n| count = count + 1 if n.notifiable_id == project.id} %>
+
       <tr>
-      <td> <%= project.name %></td>
+      <td> <%= project.name %> <%= count %></td>
 
 
       <%if project.images.last == nil %>
@@ -37,6 +58,8 @@
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
 
+
+
     <% end %>
   </tbody>
 </table>
@@ -44,3 +67,6 @@
 <br>
 
 <%= link_to 'New Project', new_project_path %>
+
+
+
