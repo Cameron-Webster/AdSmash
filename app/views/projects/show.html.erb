@@ -1,6 +1,13 @@
 
 
+<p>HOLA SOY MANDY</p>
+<ul>
+  <% @project.users.each do |worker| %>
+    <li> <%= image_tag worker.avatar, class: "avatar dropdown-toggle" %>
 
+    </li>
+  <%end %>
+</ul>
 <%= link_to 'Back', projects_path %> <br>
 <%= link_to 'Edit project', edit_project_path(@project) %> <br>
 <%= link_to "New Image", new_project_image_path(@project) %> <br>

@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @stupid = "I am stupid"
   end
 
 
