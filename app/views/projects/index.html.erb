@@ -44,7 +44,7 @@ end -->
 
       <tr>
       <td> <%= project.name %> <%= count %></td>
-
+      <%=  content_tag(:td, count, class: ["cnt#{project.id}"]) %>
 
       <%if project.images.last == nil %>
 
@@ -75,6 +75,45 @@ end -->
 <br>
 
 <%= link_to 'New Project', new_project_path %>
+
+<button class="comments">submit</button><div class="out"></div>
+
+<% content_for :after_js do %>
+<script>
+    setInterval(function(){
+
+
+
+          $.ajax({
+            method: "GET",
+            url: "<%= notifications_path %>",
+            success: function (data) {
+
+              var projects_to_update = [];
+              var counter = {};
+
+            for (var obj in data) {
+              projects_to_update.push(data[obj].notifiable)
+            };
+
+            for (var i = 0; i < projects_to_update.length; i++) {
+              counter[projects_to_update[i]] = counter[projects_to_update[i]] + 1 || 1
+            }
+              console.log(counter)
+              for(var prop in counter){
+                $('.cnt' + prop).text(counter[prop])
+              }
+
+            },
+              error: function(jqXHR) {
+          alert(jqXHR.responseText);
+            }
+          });
+        }, 20000);
+
+
+</script>
+<% end %>
 
 
 
