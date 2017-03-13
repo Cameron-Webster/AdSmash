@@ -12,7 +12,7 @@ protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :company, :name, :last_name, :avatar, :avatar_cache, :job_title, :invite_project])
-   devise_parameter_sanitizer.permit(:account_update, keys: [:email, :current_password,:password, :company, :name, :last_name, :avatar, :avatar_cache, :job_title])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :current_password,:password, :company, :name, :last_name, :avatar, :avatar_cache, :job_title])
 
   end
 end

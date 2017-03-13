@@ -6,19 +6,61 @@
 <%= link_to "New Image", new_project_image_path(@project) %> <br>
 
 
-  <% @project.images.sort {|x, y| y[:created_at] <=> x[:created_at]}.each_with_index do |img, idx| %>
+<h4>Partecipants to the project</h4>
+<% @project.users.each do |user|  %>
+
+<li ><%if user[:avatar] != nil  %>
+  <%=image_tag(user.avatar, size: "40x40", alt: "No Image")  %>
+  <% else  %>
+  <%=image_tag('http://www.ceskymac.cz/wp-content/uploads/2012/07/GuestUserIcon.png', size: "40x40", alt: "Edit Entry")  %>
+  <% end %>
+
+  <%=  user.name %>
+  <%if user.project_teams.find_by_id(params[:id]) != nil %>
+  Admin? <%= user.project_teams.find_by_id(params[:id]).admin %>
+  <%else  %>
+  Admin? false
+  <%end  %>
+
+</li>
+
+<%  end  %>
+
+
+
+<% @project.images.sort {|x, y| y[:created_at] <=> x[:created_at]}.each_with_index do |img, idx| %>
 <ul>
-    <% if idx == 0 %>
-    <div id="main-image">
-      <li style="background: #ededed; margin: 20px 0; padding: 15px">
+  <% if idx == 0 %>
+  <div id="main-image">
+    <li style="background: #ededed; margin: 20px 0; padding: 15px">
       <%= img.created_at.strftime("%Y-%m-%d") %>
       <%= cl_image_tag(img.photo, width: 300, crop: :fill, class: 'large-image') %>
       <%= link_to 'Destroy', project_image_path(img), method: :delete %> <br>
 
       <ul>
-        <% img.comments.each do |com| %>
+        <% img.comments.order(created_at: :desc).each do |com| %>
         <li><%= com.content %></li>
-        <p> <%= com.likes %> Like </p>
+
+        <li> Like <%=  com.likes  %></li>
+
+
+       <%# button_to "Like", { :controller => "comments", :action => "increase_likes", image_id: img.id} %>
+       <%= button_to "Like",  likes_path(@project,img,com,like: 'true'), method: :post %>
+       <%= button_to "dislike",  likes_path(@project,img,com,like: 'false'), method: :post %>
+
+         <li>Dislikes <%=  com.dislikes  %></li>
+
+
+
+
+
+
+
+
+
+
+
+        <p> <%= com.created_at  %></p>
         <% end  %>
       </ul>
 
@@ -27,30 +69,36 @@
     <% end %>
   </li>
 </ul>
-  <% end %>
+<% end %>
 
 
-  <% @project.images.sort {|x, y| y[:created_at] <=> x[:created_at]}.each_with_index do |img, idx| %>
-    <ul>
-     <div class="comments">
-      <li style="background: #ededed; margin: 20px 0; padding: 15px">
-      <%= img.created_at.strftime("%Y-%m-%d") %>
-       <%= cl_image_tag(img.photo, width: 300, crop: :fill, class: 'small-image') %>
+<% @project.images.sort {|x, y| y[:created_at] <=> x[:created_at]}.each_with_index do |img, idx| %>
+<ul>
+ <div class="comments">
+  <li style="background: #ededed; margin: 20px 0; padding: 15px">
+    <%= img.created_at.strftime("%Y-%m-%d") %>
+    <%= cl_image_tag(img.photo, width: 300, crop: :fill, class: 'small-image') %>
 
 
-      <div style="display: none">
-        <%= link_to 'Destroy', project_image_path(img), method: :delete %> <br>
-        <ul>
-          <% img.comments.each do |com| %>
-          <li><%= com.content %>  </li>
-          <p> <%= com.likes %> Like </p>
-          <% end  %>
-        </ul>
-        <%= render 'comments/form', image: img %>
-      </div>
-     </ul>
+    <div style="display: none">
+      <%= link_to 'Destroy', project_image_path(img), method: :delete %> <br>
+      <ul>
+        <% img.comments.each do |com| %>
+        <li><%= com.content %>  </li>
+
+        <p> <%= com.likes %> Likes </p>
+
+
+
+
+        <p> <%= com.created_at  %></p>
+        <% end  %>
+      </ul>
+      <%= render 'comments/form', image: img %>
     </div>
-  <% end %>
+  </ul>
+</div>
+<% end %>
 
 
 <%= render 'sign_up_form' %>
@@ -69,10 +117,10 @@
     $(".small-image:first").addClass('large-image').removeClass('small-image');
   });
 
-      $(window).unload(function() {
-  <%= current_user.notifications.where('notifiable_id = ?', @project.id).destroy_all %>;
+  $(window).unload(function() {
+    <%= current_user.notifications.where('notifiable_id = ?', @project.id).destroy_all %>;
 
-});
+  });
 </script>
 <% end %>
 

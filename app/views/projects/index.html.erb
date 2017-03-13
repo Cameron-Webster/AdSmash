@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <h1>Projects List</h1>
     <%= render 'global_search_bar' %>
@@ -18,6 +18,9 @@
 if request.referrer == project_path(notification.notifiable)
 
 end -->
+
+
+<% @users  %>
 
 
 <table>
@@ -66,7 +69,11 @@ end -->
 
 <br>
 
-<%= link_to 'New Project', new_project_path %>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+  <%= link_to 'New Project', new_project_path %>
+</button>
+
 
 
 

@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20170310145746) do
-
+ActiveRecord::Schema.define(version: 20170313110602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170310145746) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "likes"
+    t.integer  "dislikes"
     t.index ["image_id"], name: "index_comments_on_image_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
@@ -70,16 +69,18 @@ ActiveRecord::Schema.define(version: 20170310145746) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
-    t.date     "campaign_start"
-    t.date     "campaign_end"
     t.text     "brief"
     t.string   "brand"
     t.string   "status"
     t.date     "deadline"
     t.string   "final_file"
     t.string   "ad_networks"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "requirement"
+    t.text     "purpose"
+    t.text     "target"
+    t.text     "position"
   end
 
   create_table "temp_users", force: :cascade do |t|
