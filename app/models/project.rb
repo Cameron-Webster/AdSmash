@@ -17,21 +17,21 @@ class Project < ApplicationRecord
   has_many :images, dependent: :destroy
 
   has_many :comments, through: :images
-  has_many :temp_users
+  has_many :temp_users, dependent: :destroy
 
   validates :name, presence: true
-  validates :campaign_start, presence: true
+
   validates :deadline, presence: true
   # validates :status, presence: true - QUESTION: should this be validated? Is there a way?
-  validates :brief, presence: true
-  validate :compare_date
+  validates :brief, presence: false
+  # validate :compare_date
 end
 
-def compare_date
-  return if campaign_start.nil? && deadline.nil?
-  if campaign_start < deadline
-    errors.add(:deadline, "can't be after the campaign_start")
-  end
-end
+# def compare_date
+#   return if campaign_start.nil? && deadline.nil?
+#   if campaign_start < deadline
+#     errors.add(:deadline, "can't be after the campaign_start")
+#   end
+# end
 
 

@@ -1,0 +1,12 @@
+<h1>Project name <%= @project.name %></h1>
+
+<% today = Date.today %>
+<% @project.deadline %>
+
+
+
+<h2>Deadline: <%= distance_of_time_in_words(@project.deadline, today)  %></h2>
+
+<p>Do you want to invite some user?</p>
+
+<%= render 'sign_up_form' %>

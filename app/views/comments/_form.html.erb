@@ -1,8 +1,10 @@
-<%= simple_form_for [@project, image, @comment] do |f| %>
+<%= simple_form_for [@project, image, Comment.new] do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :content %>
+
+
     <%= f.input :attachment %>
     <%= f.input :attachment_cache, as: :hidden %>
   </div>

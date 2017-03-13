@@ -3,7 +3,9 @@ class ProjectsController < ApplicationController
 
 
   def index
+
     @notifications = Notification.where(recipient: current_user).unread
+
     @projects = current_user.projects
     if params[:filter]
       if params[:filter] == "live"
@@ -14,6 +16,11 @@ class ProjectsController < ApplicationController
         search_people_list(params[:filter])
       end
     end
+
+ end
+
+  def show
+    @list = @project.users
     search_content
     search_people
     search_date
@@ -21,30 +28,37 @@ class ProjectsController < ApplicationController
 
   end
 
-  def show
-    @stupid = "I am stupid"
-  end
+
 
 
   def new
-    @project = Project.new
+
+    if params[:project_id].present?
+      @project = Project.find(params[:project_id])
+    else
+      @project = Project.new
+    end
   end
 
 
   def edit
+    if params[:search]
+      @users = User.where("lower(email) ILIKE ?", "%#{params[:search]}%")
+    end
   end
 
 
   def create
-    @project = Project.new(project_params)
+    @project = Project.new(proj_params)
 
 
     respond_to do |format|
       if @project.save
         project_link = ProjectTeam.new(user_id: current_user.id, project_id: @project.id, admin: true)
+
         if project_link.save
           Image.new(project_id: @project.id, photo: 'images/placeholder.jpg')
-          format.html { redirect_to projects_path, notice: 'Project was successfully created.' }
+          format.html { redirect_to edit_project_path(@project, step: '2')}
         end
       else
           format.html { render :new }
@@ -53,18 +67,32 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
   end
 
 
   def update
     respond_to do |format|
-      if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { render :show, status: :ok, location: @project }
+      if @project.update(proj_params)
+        format.html {
+
+          if params[:step] == "1"
+            redirect_to edit_project_path(@project, step: 2)
+
+
+          elsif params[:step] == "2"
+            redirect_to edit_project_path(@project, step: 3) , notice: "Project #{@project.name} was successfully created."
+
+
+
+          elsif params[:step] == "3"
+            redirect_to @project
+          end
+
+        }
+
       else
         format.html { render :edit }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -74,23 +102,24 @@ class ProjectsController < ApplicationController
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
-      format.json { head :no_content }
+
     end
   end
 
   def invite
 
     @search_term = params[:search]
-
     @project = params[:id]
 
     if @search_term.match(/@/).present?
-      @users = User.where('email = ?', @search_term)
-    else
-      search = @search_term.split(' ')
-       @users = User.where('name = ? and last_name = ?', search[0], search[1])
-    end
+        @users = User.where('email = ?', @search_term)
 
+    else
+
+      @users = User.where('name = ? and last_name = ?', search[0], search[1])
+
+
+    end
   end
 
   def invite_existing
@@ -108,14 +137,11 @@ class ProjectsController < ApplicationController
   def invite_send
 
       @project = params[:id]
-
       email = params[:search]
-
       TempUser.create(email: email, project_id: @project)
-
       UserMailer.invite(email, @project).deliver_now
-
       redirect_to project_path(@project), notice: 'invite sent'
+
   end
 
 
@@ -142,6 +168,7 @@ class ProjectsController < ApplicationController
         list << project if project.users.any? { |user| user.name == query || user.last_name == query || user.email == query }
       end
       @projects = list
+
   end
 
 
@@ -176,8 +203,8 @@ class ProjectsController < ApplicationController
     end
 
 
-    def project_params
-       params.require(:project).permit(:name, :brief, :campaign_start, :campaign_end, :brand, :deadline, :ad_networks, :status)
+    def proj_params
+       params.require(:project).permit(:name, :brief, :target, :requirement, :position, :purpose, :brand, :deadline, :ad_networks, :status)
     end
 
     def datepicker_into_object(dates)
