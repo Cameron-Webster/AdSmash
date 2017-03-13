@@ -1,6 +1,13 @@
 
 
 
+<ul>
+  <% @project.users.each do |worker| %>
+    <li> <%= image_tag worker.avatar, class: "avatar dropdown-toggle" %>
+
+    </li>
+  <%end %>
+</ul>
 <%= link_to 'Back', projects_path %> <br>
 <%= link_to 'Edit project', edit_project_path(@project) %> <br>
 <%= link_to "New Image", new_project_image_path(@project) %> <br>
@@ -116,9 +123,28 @@
     $('#main-image div').css("display", "block");
     $(".small-image:first").addClass('large-image').removeClass('small-image');
   });
+        // $(window).load(function()
+      $(window).load(function() {
 
-  $(window).unload(function() {
-    <%= current_user.notifications.where('notifiable_id = ?', @project.id).destroy_all %>;
+          var proj = JSON.stringify({
+            "project": <%= @project.id %>
+          });
+
+
+          $.ajax({
+            method: "DELETE",
+            url: "<%= notification_path(@project) %>",
+            data: proj,
+            success: function (argument) {
+              // body...
+              alert("succes")
+            },
+              error: function(jqXHR) {
+          alert(jqXHR.responseText);
+            }
+          });
+
+
 
   });
 </script>

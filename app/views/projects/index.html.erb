@@ -31,6 +31,14 @@ end -->
   </thead>
 
   <tbody>
+   <ul><% @colleagues_names.each do |colleague| %>
+     <li><%= link_to colleague.split.map(&:capitalize).join(' '), projects_path(filter: colleague.split.map.first) %></li>
+
+     <% end %>
+     <li><%= link_to "live projects", projects_path(filter: "live")  %></li>
+     <li><%= link_to "closed projects", projects_path(filter: "closed")  %></li>
+   </ul>
+
 
     <% @projects.each do |project| %>
 
@@ -39,7 +47,7 @@ end -->
 
       <tr>
       <td> <%= project.name %> <%= count %></td>
-
+      <%=  content_tag(:td, count, class: ["cnt#{project.id}"]) %>
 
       <%if project.images.last == nil %>
 
@@ -60,7 +68,7 @@ end -->
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-
+    <ul></ul>
 
 
     <% end %>
@@ -74,6 +82,45 @@ end -->
   <%= link_to 'New Project', new_project_path %>
 </button>
 
+
+<button class="comments">submit</button><div class="out"></div>
+
+<% content_for :after_js do %>
+<script>
+    setInterval(function(){
+
+
+
+          $.ajax({
+            method: "GET",
+            url: "<%= notifications_path %>",
+            success: function (data) {
+
+              var projects_to_update = [];
+              var counter = {};
+
+            for (var obj in data) {
+              projects_to_update.push(data[obj].notifiable)
+            };
+
+            for (var i = 0; i < projects_to_update.length; i++) {
+              counter[projects_to_update[i]] = counter[projects_to_update[i]] + 1 || 1
+            }
+              console.log(counter)
+              for(var prop in counter){
+                $('.cnt' + prop).text(counter[prop])
+              }
+
+            },
+              error: function(jqXHR) {
+          alert(jqXHR.responseText);
+            }
+          });
+        }, 20000);
+
+
+</script>
+<% end %>
 
 
 

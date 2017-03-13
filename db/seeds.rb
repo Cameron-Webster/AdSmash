@@ -24,3 +24,6 @@ z = User.create(name: Faker::Name.first_name, last_name: Faker::Name.last_name, 
   end
 end
 
+# def seed_image(file_name)
+#   File.open(File.join(Rails.root, "/app/assets/images/#{file_name}"))
+# end

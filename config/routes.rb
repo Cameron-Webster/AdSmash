@@ -6,7 +6,6 @@ devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'
 post '/projects/:project_id/images/:image_id/comments/:id', to: 'comments#likes_manager', as: "likes"
 
 
-
   resources :notifications
 
   resources :projects do
