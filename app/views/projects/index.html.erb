@@ -66,12 +66,15 @@ end -->
 
 <br>
 
+<div class="activity"><ul></ul></div>
+
 <%= link_to 'New Project', new_project_path %>
 
 <button class="comments">submit</button><div class="out"></div>
 
 <% content_for :after_js do %>
 <script>
+var activity = {};
     setInterval(function(){
 
 
@@ -81,20 +84,34 @@ end -->
             url: "<%= notifications_path %>",
             success: function (data) {
 
+              //for activity count per project
+
               var projects_to_update = [];
               var counter = {};
 
+
             for (var obj in data) {
               projects_to_update.push(data[obj].notifiable)
+              activity[data[obj].id] = [data[obj].notifiable, data[obj].actor, data[obj].action]
             };
 
             for (var i = 0; i < projects_to_update.length; i++) {
               counter[projects_to_update[i]] = counter[projects_to_update[i]] + 1 || 1
             }
-              console.log(counter)
+              // console.log(counter)
               for(var prop in counter){
                 $('.cnt' + prop).text(counter[prop])
               }
+
+              // for(var prop in activity) {
+              //   $('.activity ul').text('<li>' + activity[prop][1] + ' ' + activity[prop][2] + '</li>')
+              // }
+
+
+
+              console.log(activity);
+
+
 
             },
               error: function(jqXHR) {
