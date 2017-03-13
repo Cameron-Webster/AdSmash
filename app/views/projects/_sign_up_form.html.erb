@@ -1,6 +1,36 @@
 
 
-<%= form_tag send_invitation_path do %>
-  <%= text_field_tag :search %>
-  <%= submit_tag "Invite" %>
+<%= form_tag edit_project_path(@project), method: :get do %>
+<%= hidden_field_tag :step, 3 %>
+<%= text_field_tag :search, params[:search] %>
+<%= submit_tag "Invite" %>
+<% end %>
+
+
+<% if defined?(@users) %>
+
+       <% if @users.empty?  %>
+
+        <p>Sorry there are no users with those credentials use the link below to invite by email</p>
+        <p>Type the email address to send an invitation </p>
+        <%= form_tag send_invitations_path do %>
+        <%= text_field_tag :search, @search_term %>
+        <%= submit_tag "Send a mail" %>
+        <% end  %>
+
+       <% else  %>
+
+      <% @users.each do |user|  %>
+
+            <li ><%if user[:avatar] != nil  %>
+            <%=image_tag(user.avatar, size: "40x40", alt: "Edit Entry")  %>
+            <% else  %>
+            <%=image_tag('http://www.ceskymac.cz/wp-content/uploads/2012/07/GuestUserIcon.png', size: "40x40", alt: "Edit Entry")  %>
+              <% end %>
+            <%= link_to user.name, send_existing_path(@project, user), method: :post %></li>
+
+            <% end  %>
+
+        <% end  %>
+
 <% end %>

@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <h1>Projects List</h1>
     <%= render 'global_search_bar' %>
@@ -20,6 +20,9 @@ if request.referrer == project_path(notification.notifiable)
 end -->
 
 
+<% @users  %>
+
+
 <table>
   <thead>
     <tr>
@@ -28,6 +31,14 @@ end -->
   </thead>
 
   <tbody>
+   <ul><% @colleagues_names.each do |colleague| %>
+     <li><%= link_to colleague.split.map(&:capitalize).join(' '), projects_path(filter: colleague.split.map.first) %></li>
+
+     <% end %>
+     <li><%= link_to "live projects", projects_path(filter: "live")  %></li>
+     <li><%= link_to "closed projects", projects_path(filter: "closed")  %></li>
+   </ul>
+
 
     <% @projects.each do |project| %>
 
@@ -57,7 +68,7 @@ end -->
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-
+    <ul></ul>
 
 
     <% end %>
@@ -66,9 +77,17 @@ end -->
 
 <br>
 
+
 <div class="activity"><ul></ul></div>
 
 <%= link_to 'New Project', new_project_path %>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+  <%= link_to 'New Project', new_project_path %>
+</button>
+
+
 
 <button class="comments">submit</button><div class="out"></div>
 
