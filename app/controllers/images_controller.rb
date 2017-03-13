@@ -14,7 +14,12 @@ class ImagesController < ApplicationController
 
      @image = Image.new(image_params)
      @image.project_id = params[:project_id]
+     @project = Project.find(params[:project_id])
      if @image.save
+      @project.users.each do |user|
+        Notification.create(recipient: user, actor: current_user, action: "new_image_upload", notifiable: @project)
+
+      end
       redirect_to project_path(@image.project_id)
      else
       redirect_to new_project_image_path(@image.project_id), alert: 'Image upload unsuccessful please try again.'

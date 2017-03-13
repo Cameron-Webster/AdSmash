@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
       @project = Project.find(params[:project_id])
 
       @project.users.each do |user|
-        Notification.create(recipient: user, actor: current_user, action: "posted", notifiable: @project)
+        Notification.create(recipient: user, actor: current_user, action: "comment", notifiable: @project)
 
       end
     else
