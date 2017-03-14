@@ -1,9 +1,5 @@
 <h1>Step 1</h1>
 
-<%= simple_form_for(@project) do |f| %>
-<%= f.error_notification %>
-<%= hidden_field_tag :step, 1 %>
-
 <div class="form-inputs">
   <%= f.input :name %>
   <%= f.input :brand %>
@@ -12,7 +8,8 @@
   <%= f.input :ad_networks %>
 </div>
 <div class="form-actions">
-  <%= f.button :submit , "Step 2 >>" %>
+  <%= link_to "Step 2 >>", '#', id: 'nextstep-1'%>
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 </div>
-<% end %>
+
 

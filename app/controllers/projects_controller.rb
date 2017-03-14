@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-
+  before_action :new_project, only: [:new,:index]
 
   def index
 
@@ -16,28 +16,20 @@ class ProjectsController < ApplicationController
         search_people_list(params[:filter])
       end
     end
-
- end
-
-  def show
-    @list = @project.users
     search_content
     search_people
     search_date
     list_colleagues
+  end
 
+  def show
+    @list = @project.users
   end
 
 
 
 
   def new
-
-    if params[:project_id].present?
-      @project = Project.find(params[:project_id])
-    else
-      @project = Project.new
-    end
   end
 
 
@@ -49,6 +41,7 @@ class ProjectsController < ApplicationController
 
 
   def create
+    raise
     @project = Project.new(proj_params)
 
 
@@ -197,7 +190,13 @@ class ProjectsController < ApplicationController
 
 
   private
-
+    def new_project
+        if params[:project_id].present?
+          @project = Project.find(params[:project_id])
+        else
+          @project = Project.new
+        end
+    end
     def set_project
       @project = Project.find(params[:id])
     end
