@@ -1,2 +1,131 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+
+
+
+<div class="banner">
+
+  <div class="banner-content ">
+
+    <h1 class="title text-center">Work Smart</h1>
+    <h3 class="motto text-center">Manage your advertising campaign easier</h3>
+
+
+    <%= link_to t(".sign_up", default: "Sign up"), new_user_registration_path, class: "btn button-ad " %>
+
+
+    <%= link_to omniauth_authorize_path('user', 'linkedin'), class: ' btn button-linkedin' do %>
+    Sign in with  <i class="fa fa-linkedin "></i>
+    <% end %>
+  </div>
+
+
+</div>
+
+
+
+<div class="second-banner">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="card">
+          <h2 class="text-center">AdSmash</h2>
+          <div class="text-center line"></div>
+          <h3 class="text-center">enables brands to easily manage content creation, distribution, and measurement – across channels, teams, and global markets – all on a single platform.</h3>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<div class="third-banner">
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-3">
+        <div class="card-class text-center">
+          <i class="fa fa-calendar fa-4x" aria-hidden="true"></i>
+          <h4>Manage your marketing</h4>
+          <p>Drive efficiency with collaborative workflows and calendars.</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <div class="card-class text-center">
+         <i class="fa fa-window-restore fa-4x" aria-hidden="true"></i>
+         <h4>Scale content production</h4>
+         <p>Access the highest quality original and licensed content.</p>
+
+       </div>
+     </div>
+     <div class="col-xs-12 col-sm-3">
+      <div class="card-class text-center">
+       <i class="fa fa fa-bullhorn fa-4x" aria-hidden="true"></i>
+       <h4>Publish content everywhere</h4>
+       <p>Easily share content across teams, channels, and markets.</p>
+     </div>
+   </div>
+   <div class="col-xs-12 col-sm-3">
+    <div class="card-class text-center">
+      <i class="fa fa-bar-chart fa-4x" aria-hidden="true"></i>
+      <h4>Prove real business impact</h4>
+      <p>Reach the right people with the right content, wherever they are.</p>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+<div class="forth-banner">
+
+<div id="text-carousel" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+    <div class="row">
+        <div class="col-xs-offset-3 col-xs-6">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="carousel-content">
+                        <div>
+                            <p class="text-center">"AdSmash is innovative. For us it's been a godsend." </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                            <p class="text-center">"Adsmash is one of the few vendors that actually delivers what they promise." </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                            <p class="text-center"">"AdSmash is more than a technology vendor, they really are a partner for us." </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Controls --> <a class="left carousel-control" href="#text-carousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+ <a class="right carousel-control" href="#text-carousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
