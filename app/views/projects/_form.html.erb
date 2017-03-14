@@ -1,6 +1,7 @@
 
 <%= simple_form_for(project) do |f| %>
 <%= f.error_notification %>
+
   <div id="step-1"><%= render 'form_np_1', f: f %></div>
   <div id="step-2"><%= render 'form_np_2', f: f %></div>
 <% end %>

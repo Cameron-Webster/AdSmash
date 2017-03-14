@@ -23,7 +23,7 @@ post '/projects/:project_id/images/:image_id/comments/:id', to: 'comments#likes_
   post '/projects/:id/:user', to: 'projects#invite_existing', as: 'send_existing'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-
+  get '/projects/:id/add_users', to: 'projects#invite_view_users', as: 'invite_users'
 end
 
 

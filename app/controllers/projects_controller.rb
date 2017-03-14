@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy,:add_users,:invite_view_users]
   before_action :new_project, only: [:new,:index]
 
   def index
@@ -42,15 +42,13 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(proj_params)
-
-    raise
+    @project.status="live"
     respond_to do |format|
       if @project.save
         project_link = ProjectTeam.new(user_id: current_user.id, project_id: @project.id, admin: true)
-
         if project_link.save
           Image.new(project_id: @project.id, photo: 'images/placeholder.jpg')
-          format.html { redirect_to edit_project_path(@project, step: '2')}
+          format.html { redirect_to invite_users_path(@project)}
         end
       else
           format.html { render :new }
@@ -67,7 +65,7 @@ class ProjectsController < ApplicationController
       if @project.update(proj_params)
         format.html {
 
-          if params[:step] == "1"
+          if params[:step] == "3"
             redirect_to edit_project_path(@project, step: 2)
 
 
@@ -186,7 +184,11 @@ class ProjectsController < ApplicationController
     end
     @colleagues_names.uniq!
   end
-
+  def invite_view_users
+    if params[:search]
+      @users = User.where("lower(email) ILIKE ?", "%#{params[:search]}%")
+    end
+  end
 
   private
     def new_project
