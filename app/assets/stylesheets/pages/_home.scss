@@ -2,3 +2,248 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
+ .banner {
+  color: white;
+  text-align: center;
+  height: 90vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position:right;
+  max-width: 100%;
+  max-height: 100%;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+// .banner h1 {
+//   font-size: 50px;
+//   font-weight: bold;
+//   text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+// }
+// .banner p {
+//   font-size: 20px;
+//   font-weight: lighter;
+//   color: rgba(255, 255, 255, 0.7);
+//   margin-bottom: 20px;
+// }
+//
+//
+
+h3.motto {
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 40px;
+  font-family: lato;
+  font-size: 28px;
+  color: #010101;
+}
+
+.border-line{
+
+  width: 320px;
+  border-style: solid;
+  border-color: #DB2332;
+}
+
+.home-button {
+
+  padding: 0 20px;
+  border-radius: 3px;
+  line-height: 30px;
+  background: #DB2332;
+  border-color:#DB2332;
+  color: white ;
+  font-size: 20px;
+  border: 2px solid #DB2332;
+  margin-bottom: 30px;
+  font-weight:300;
+}
+.home-button:hover {
+  color: white;
+  background: #DB2332;
+  border-color: #DB2332;
+}
+
+h1.title {
+  font-size: 90px;
+  color: #010101;
+  margin-bottom: -20px;
+}
+
+.banner-content{
+  margin-top: -10px;
+  margin-right: 500px;
+
+}
+
+.banner-link{
+
+  padding: 10px 10px 20px 10px;
+  border-radius: 3px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+p.linkedin {
+
+  padding-right: 20px;
+  color: white;
+  font-weight: 300;
+  font-size: 20px;
+  margin-top: -4px;
+  font-family: lato;
+
+}
+
+
+.btn-linkedin{
+  height: 35px;
+
+}
+
+.button-ad {
+  margin-left: 10px;
+  padding: 10px 20px 10px 20px;
+  border-radius: 4px;
+  line-height: 40px;
+  background-color: #DB2332;
+  border-color: #DB2332 ;
+  color: white ;
+  font-size: 18px;
+  border: 2px solid #DB2332;
+  width: 220px;
+  margin-right: 20px;
+}
+
+.button-ad:hover {
+  color: white;
+  background: #B3252F;
+  border-color: #B3252F;
+}
+
+.button-linkedin {
+  margin-left: 10px;
+  padding: 10px 20px 10px 20px;
+  border-radius: 4px;
+  line-height: 40px;
+  background: #0077B5;
+  border-color:#0077B5  ;
+  color: white ;
+  font-size: 18px;
+  border: 2px solid #0077B5;
+  width: 220px;
+
+
+}
+
+p.fa {
+  font-size: 14px;
+}
+
+.button-linkedin:hover {
+  color: white;
+  background: #02679B;
+  border-color: #02679B;
+
+}
+
+.second-banner{
+
+  background-color: white;
+  height: 40vh;
+  padding-top: 20px;
+}
+
+.card {
+  height: 100px;
+  /*text-shadow: 0 1px 3px rgba(0,0,0,0.6);*/
+  background-size: cover !important;
+  background-color: white;
+  color: white;
+  position: relative;
+  margin-top: 40px;
+
+
+
+}
+
+.card h2 {
+  color: #010101;
+  font-family: Cabin;
+  font-weight: 400;
+  font-style: bold;
+  font-size: 40px;
+}
+
+.card h3 {
+  color: #010101;
+  font-family: lato;
+  font-weight: 300;
+}
+
+.third-banner{
+
+  background-color: #EAE5E7;
+  height: 50vh;
+  padding-top: 85px;
+}
+
+.line {
+  border-style: solid;
+  border-color: #DB2332;
+  border-width: 1px;
+  align: center;
+  width:140px;
+  margin: 0 500px 0 500px;
+  border-radius: 4px;
+}
+
+.forth-banner
+{
+  background-color: #0077B5;
+  height: 25vh;
+  padding-top:40px;
+}
+
+  .carousel-content {
+    color:white;
+    display:flex;
+    align-items:center;
+  }
+
+  #text-carousel {
+    width: 100%;
+    height: auto;
+
+
+  }
+
+  .row{
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .container{
+    .row{
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+  }
+
+  .carousel-control.left, .carousel-control.right {
+   background-image:none !important;
+   filter:none !important;
+ }
+
+ .carousel-content p {
+  font-size: 30px;
+  font-family: Lato;
+  font-style: italic;
+
+
+}
+
