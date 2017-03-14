@@ -17,14 +17,16 @@ class ProjectsController < ApplicationController
       end
     end
 
- end
-
-  def show
-    @list = @project.users
+    # @list = @project.users
     search_content
     search_people
     search_date
     list_colleagues
+
+
+ end
+
+  def show
 
   end
 
