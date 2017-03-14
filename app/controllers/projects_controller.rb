@@ -41,10 +41,9 @@ class ProjectsController < ApplicationController
 
 
   def create
-    raise
     @project = Project.new(proj_params)
 
-
+    raise
     respond_to do |format|
       if @project.save
         project_link = ProjectTeam.new(user_id: current_user.id, project_id: @project.id, admin: true)
