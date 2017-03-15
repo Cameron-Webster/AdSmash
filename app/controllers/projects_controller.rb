@@ -17,11 +17,15 @@ class ProjectsController < ApplicationController
       end
     end
 
+
     search_content
     search_people
     search_date
     list_colleagues
-  end
+
+ end
+
+
 
   def show
 
