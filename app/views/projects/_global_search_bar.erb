@@ -1,5 +1,8 @@
+<%= simple_form_for :global_search, :url => projects_path, method: :get, html: {class: 'navbar-search '  } do |f| %>
 
-<%= simple_form_for :global_search,  :url => projects_path, method: :get, html: {class: 'form-inline'} do |f| %>
-  <%= f.input :content %>
-  <%= f.submit "search!", class: "btn btn-primary" %>
+  <%= f.input :content, input_html: {class: 'thin-form '  },label_html: {class: 'sr-only ' }, placeholder: 'Search by content'  %>
+  <button type="submit" class="btn grey-button">
+    <i class="fa fa-search" aria-hidden="true"></i>
+  </button>
+
 <% end %>

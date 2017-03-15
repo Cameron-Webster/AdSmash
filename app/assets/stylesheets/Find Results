@@ -1,0 +1,15 @@
+Searching 190 files for "formproject"
+
+/Users/francesco/code/fra0074/AdSmash/app/assets/stylesheets/application.scss:
+   15  @import "vendor/index";
+   16  @import "bootstrap-social";
+   17: @import "formproject";
+   18
+
+/Users/francesco/code/fra0074/AdSmash/app/assets/stylesheets/layout/_index.scss:
+    3  @import "navbar";
+    4  @import 'general';
+    5:
+    6
+
+2 matches across 2 files

@@ -1,20 +1,34 @@
-<h1>Step 1</h1>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="step_one"></div>
 
-<div class="form-inputs">
-  <%= f.input :name %>
-  <%= f.input :brand %>
-  <%= f.input :status, as: :hidden, default: "live" %>
-  <%= f.input :deadline, as: :date %>
-  <%= f.input :ad_networks %>
-</div>
-<div class="form-actions">
+    </div>
+
+  </div>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :brand %>
+    <%= f.input :status, as: :hidden, default: "live" %>
+    <%= f.input :deadline, as: :date %>
+    <%= f.input :ad_networks %>
+  </div>
+
+  <div class="form-actions margint">
+    <div class="pull-right">
+      <%= button_to "Step 2", '#', id: 'nextstep-1', class:"btn btn-primary"%>
+    </div>
+
+    <div class="pull-left">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    </div>
+  </div>
+
+  <div class="marginb"></div>
 
 
 
-  <%= link_to "Step 2 >>", '#', id: 'nextstep-1'%>
-
-
-  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 </div>
 
 

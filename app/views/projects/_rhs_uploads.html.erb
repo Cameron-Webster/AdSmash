@@ -1,0 +1,24 @@
+<div class="scroll-container">
+
+            <p>Previous Versions</p>
+
+            <% @project_images.each_with_index do |img, idx| %>
+
+            <% if idx > 0 || params[:display_image].present? %>
+
+              <% unless @first_image == img %>
+            <div class="side-card">
+            <%= link_to 'edit', old_image_project_path(@project,img)  %>
+             <%= cl_image_tag(img.photo, width: 200, crop: :fill, class: 'swap-image') %>
+             <p><%= img.created_at.strftime("%B %d %Y %k:%M") %></p>
+             <div class="swap-image">view version</div>
+
+           </div>
+
+           <% end %>
+
+           <% end %>
+
+           <% end %>
+
+         </div>
