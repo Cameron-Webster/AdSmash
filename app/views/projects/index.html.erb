@@ -1,101 +1,18 @@
+<%= render 'shared/secondnavbar'%>
 
-
-
-
-
-    <% x = request.referrer %>
-
-<h2> this is h2</h2>
-
-<h3>this is h3</h3>
-
-<p> this is p this is pthis is pthis is p</p>
-
-
-<button type="button" class="btn red-button" >
-  <%= link_to 'Button', new_project_path %>
-</button>
-
-<button type="button" class="btn grey-button-button" >
-  <%= link_to 'Button', new_project_path %>
-</button>
-
-<!--     @notifications.each do |notification|
-
-if request.referrer == project_path(notification.notifiable)
-
-end -->
-
-
-<% @users  %>
-
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <% unless @colleagues_names.nil? %>
-   <ul><% @colleagues_names.each do |colleague| %>
-     <li><%= link_to colleague.split.map(&:capitalize).join(' '), projects_path(filter: colleague.split.map.first) %></li>
-
-     <% end %>
-     <% end %>
-     <li><%= link_to "live projects", projects_path(filter: "live")  %></li>
-     <li><%= link_to "closed projects", projects_path(filter: "closed")  %></li>
-   </ul>
-
-
-    <% @projects.each do |project| %>
-
-    <% count = 0 %>
-    <%  @notifications.each {|n| count = count + 1 if n.notifiable_id == project.id} %>
-
-      <tr>
-      <td> <%= project.name %> <%= count %></td>
-      <%=  content_tag(:td, count, class: ["cnt#{project.id}"]) %>
-
-      <%if project.images.last == nil %>
-
-       <td> <%= cl_image_tag('https://dummyimage.com/200x200/000/fff&text=No+Image+Available', width: 200, height: 200, crop: :fill) %> <br></td>
-
-       <%else  %>
-
-      <td> <%= cl_image_tag(project.images.last.photo, width: 200, height: 200, crop: :fill) %> <br></td>
-
-      <%end  %>
-
-       <td> <% project.project_teams.each do |x|  %></td>
-       <td><%= x.user.name  %></td>
-
-       <% end %>
-
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <ul></ul>
-
-
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-
-<div class="activity"><ul></ul></div>
-
-
-
-   <%= render 'modal',  action: "NEW PROJECT"%>
-
-
-
+<div id="wrapper2">
+    <div class="container">
+      <div class="row">
+        <div class="project-search-results">
+          <% @projects.each do |project| %>
+          <div class="col-xs-12 col-sm-4 ">
+            <%= render "project_search_result_card", project: project %>
+          </div>
+          <% end %>
+        </div>
+     </div>
+   </div>
+  </div>
 
 
 <% content_for :after_js do %>
@@ -149,6 +66,3 @@ var activity = {};
 
 </script>
 <% end %>
-
-
-

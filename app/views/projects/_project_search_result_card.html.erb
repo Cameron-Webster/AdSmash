@@ -1,0 +1,28 @@
+<div class="project-card">
+  <div class="deadline">
+    <%= project.deadline  %>
+  </div>
+
+  <div class="notifications">
+    <% count = 0 %>
+    <%  @notifications.each {|n| count = count + 1 if n.notifiable_id == project.id} %>
+
+      <%=  content_tag(:td, count, class: ["cnt#{project.id}"]) %>
+  </div>
+  <div class="project-last-image">
+    <%if project.images.last == nil %>
+      <%= cl_image_tag('https://dummyimage.com/200x200/000/fff&text=No+Image+Available') %>
+    <%else  %>
+      <%= cl_image_tag(project.images.last.photo) %> <br>
+    <%end  %>
+  </div>
+  <br>
+  <div class="project-name">
+    <%= project.name %>
+  </div>
+  <div class="project-brand">
+    <%= project.brand %>
+  </div>
+</div>
+
+

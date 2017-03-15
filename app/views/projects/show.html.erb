@@ -1,4 +1,3 @@
-
 <div class="show">
 <div class="container-fluid">
 
@@ -14,7 +13,7 @@
 
     </div>
 
-    <div class="col-sm-10" style="border: 1px dotted black">
+    <div class="col-sm-10">
 
       <div class="row">
 
@@ -40,7 +39,7 @@
 
           <div id="home" class="tab-pane fade in active">
 
-            <div class="col-sm-8 grey-bg" style="border: 2px solid red; height: 800px;">
+            <div class="col-sm-8 grey-bg">
 
              <%= render 'comments' %>
 
@@ -50,17 +49,18 @@
 
          <div id="menu1" class="tab-pane fade">
 
-          <div class="col-sm-8 grey-bg" style="border: 2px solid red; height: 800px;">
-
-           <%= render 'form_np_2', project: @project %>
-
+          <div class="col-sm-8 grey-bg">
+            <%= simple_form_for(@project) do |f| %>
+            <%= f.error_notification %>
+               <%= render 'form_np_2',{project: @project, f:f} %>
+            <% end %>
          </div>
 
        </div>
 
      </div>
 
-     <div class="col-sm-4 right-column" style="border: 1px dotted black;">
+     <div class="col-sm-4 right-column">
 
       <%= render 'rhs_uploads' %>
 
