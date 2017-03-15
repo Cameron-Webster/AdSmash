@@ -1,18 +1,89 @@
-<%= render 'shared/secondnavbar'%>
 
-<div id="wrapper2">
-    <div class="container">
-      <div class="row">
-        <div class="project-search-results">
-          <% @projects.each do |project| %>
-          <div class="col-xs-12 col-sm-4 ">
-            <%= render "project_search_result_card", project: project %>
-          </div>
-          <% end %>
+
+
+
+
+
+
+
+
+ <div id="sbwrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+               <%= render 'shared/sidebar' %>
+            </ul>
         </div>
-     </div>
-   </div>
-  </div>
+        <div id="page-content-wrapper">
+            <div class="page-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- content of page -->
+                            <%= render 'shared/secondnavbar'%>
+                             <div class="project-search-results">
+                                <% @projects.each do |project| %>
+                                  <div class="col-xs-12 col-sm-4 ">
+                                    <%= render "project_search_result_card", project: project %>
+                                  </div>
+                                  <% end %>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <% content_for :after_js do %>

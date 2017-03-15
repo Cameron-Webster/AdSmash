@@ -1,20 +1,18 @@
 <div class="navbar-wagon">
 
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
+  <%= link_to root_path, class: "secondnavbar navbar-wagon-brand" do %>
     <%= image_tag "logo.png" %>
   <% end %>
 
-
-
   <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+  <div class="secondnavbar navbar-wagon-right hidden-xs hidden-sm">
 
     <!-- create new project link-->
 
 <%= render 'modal',  action: "NEW PROJECT"%>
 
-    <div class="navbar-wagon-project">
+    <div class="secondnavbar navbar-wagon-project">
       <%# link_to new_project_path do %>
         <%# image_tag "create_new_icon.png" %>
         <!-- <span class= "thin-link">new project</span> -->
@@ -24,7 +22,7 @@
     <!-- Search Bar and dropdown-->
     <%= render 'projects/global_search_bar' %>
 
-    <ul class="extended-search">
+    <ul class="secondnavbar extended-search">
       <li>
         <%= render 'projects/search_people_bar' %>
       </li>
@@ -51,19 +49,15 @@
     <% if current_user %>
 
     <!-- Profile picture and dropdown -->
-    <div class="navbar-wagon-item">
+    <div class="secondnavbar navbar-wagon-item">
       <div class="dropdown">
 
-         <span class="navbar-name"><%= current_user.name.capitalize %>
-         <%= current_user.last_name.capitalize %></span>
-
-
         <% if current_user[:avatar].nil?  %>
-          <%= image_tag 'http://www.ceskymac.cz/wp-content/uploads/2012/07/GuestUserIcon.png', class: "avatar avatar-square dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <%= image_tag 'http://www.ceskymac.cz/wp-content/uploads/2012/07/GuestUserIcon.png', class: "secondnavbar avatar avatar-square dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
         <% else  %>
           <%= image_tag current_user.avatar, class: "avatar avatar-square dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
         <% end  %>
-        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+        <ul class="secondnavbar dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li>
             <%= link_to edit_user_registration_path do %>
               <i class="fa fa-user"></i> <%= t(".profile", default: "Edit Profile") %>
