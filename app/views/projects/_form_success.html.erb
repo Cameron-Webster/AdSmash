@@ -1,12 +1,72 @@
-<h1>Project name <%= @project.name %></h1>
+<body class="background-invite">
 
-<% today = Date.today %>
-<% @project.deadline %>
+ <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <!-- insert <div class="card"> -->
+        <div class="framework-details">
+          <div class="invite-title text-left"><h4>Project name: <%= @project.name %></h4></div>
+          <% today = Date.today %>
+          <% @project.deadline %>
+          <h2>Deadline: <%= distance_of_time_in_words(@project.deadline, today)  %></h2>
+
+          <p>People involved </p>
+          <ul>
+
+            <% @project.users.each do |user| %>
 
 
 
-<h2>Deadline: <%= distance_of_time_in_words(@project.deadline, today)  %></h2>
+            <li>  <%if user[:avatar] != nil  %>
+              <%=image_tag(user.avatar, size: "40x40", alt: "Edit Entry")  %>
+              <% else  %>
+              <%=image_tag('http://www.ceskymac.cz/wp-content/uploads/2012/07/GuestUserIcon.png', size: "40x40", alt: "Edit Entry")  %>
+              <% end %>
+              <%= user.name  %>
+              <%= user.last_name %> </li>
+              <%  end  %>
+            </ul>
 
-<p>Do you want to invite some user?</p>
+           <%=button_to "Back to project", project_path(@project), class: "indent btn btn-default pull-right"  %>
+          </div>
+        </div>
 
-<%= render 'sign_up_form' %>
+        <div class="col-xs-12 col-md-2">
+        <div class="line-invite"></div>
+       </div>
+
+
+        <div class="col-xs-12 col-md-4">
+          <!-- insert <div class="card"> -->
+          <div class="framework-invite">
+            <div class="invite-title text-left"><h4>Invite</h4></div>
+            <p>Do you want to invite some user?</p>
+            <%= render 'sign_up_form' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+  </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

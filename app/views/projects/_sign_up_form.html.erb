@@ -21,8 +21,8 @@
        <% else  %>
 
       <% @users.each do |user|  %>
-
-            <li ><%if user[:avatar] != nil  %>
+           <ul>
+            <%if user[:avatar] != nil  %>
             <%=image_tag(user.avatar, size: "40x40", alt: "Edit Entry")  %>
             <% else  %>
             <%=image_tag('http://www.ceskymac.cz/wp-content/uploads/2012/07/GuestUserIcon.png', size: "40x40", alt: "Edit Entry")  %>
@@ -30,6 +30,7 @@
             <%= link_to user.name, send_existing_path(@project, user), method: :post %></li>
 
             <% end  %>
+            </ul>
 
         <% end  %>
 
