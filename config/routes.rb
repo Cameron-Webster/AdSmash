@@ -9,6 +9,9 @@ post '/projects/:project_id/images/:image_id/comments/:id', to: 'comments#likes_
   resources :notifications
 
   resources :projects do
+    member do
+      get "/image_show/:display_image", to: 'projects#show', as: 'old_image'
+    end
     resources :images, only: [:show, :create, :destroy, :new] do
       resources :comments,  except: [:edit,:show]
     end

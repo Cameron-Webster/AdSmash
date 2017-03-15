@@ -9,7 +9,15 @@
   padding: 0px 30px;
   align-items: center;
   justify-content: space-between;
+  width: 100%
+
 }
+
+.whole-width-row
+{
+  width: 100%
+}
+
 
 /* Optional class to fix the navbar on top */
 .navbar-wagon-fixed {
@@ -30,8 +38,47 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 50%;
+}
+.navbar-wagon-project {
+  a {
+    display: block;
+    height: 36px;
+  }
+  img {
+    width: 36px;
+    margin-right: 3px;
+  }
+}
+.navbar-search {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  .form-group {
+    width: 100%;
+    margin: 0;
+    margin-right:10px;
+  }
+}
+.extended-search {
+  display:none;
+  position: absolute;
+  top: 62px;
+  right: 230px;
+  width: 294px;
+  border: 1px solid #ccc;
+  margin: 0;
+  background-color: #fff;
+  padding: 10px;
 }
 
+.sub-search {
+  width :200px;
+      display: -webkit-box;
+    // position: absolute;
+    // align-items: center;
+}
 /* Navbar item */
 .navbar-wagon-item {
   flex: 0 1 auto;
@@ -135,12 +182,61 @@
 }
 
 
+
 .navbar-name{
   margin-right: 5px;
   font-family: lato;
   font-weight: 400;
 
 }
+
+
+.thin-link{
+  font-weight: 300;
+  color: #A5A5A5;
+}
+
+.daterangepicker .input-mini {
+  border: 1px solid #A5A5A5 !important;
+  border-radius: 0px !important;
+  font-weight: 300;
+    .active {
+      border: 2px !important;
+  }
+}
+
+.calendar {
+  font-weight: 300;
+  color: #A5A5A5;
+
+}
+
+.applyBtn {
+  background-color: red;
+  border-color: red;
+}
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+    background-color: #ff3a1a !important;
+    border-color: transparent !important;
+    color: #fff !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
