@@ -56,6 +56,7 @@ class ProjectsController < ApplicationController
 
 
   def edit
+
     if params[:search]
       @users = User.where("lower(email) ILIKE ?", "%#{params[:search]}%")
     end
@@ -94,6 +95,8 @@ class ProjectsController < ApplicationController
 
           elsif params[:step] == "3"
             redirect_to @project
+          else
+            redirect_to projects_path
           end
 
         }

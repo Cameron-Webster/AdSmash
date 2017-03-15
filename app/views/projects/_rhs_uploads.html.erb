@@ -8,8 +8,10 @@
 
               <% unless @first_image == img %>
             <div class="side-card">
-            <%= link_to 'edit', old_image_project_path(@project,img)  %>
+            <%= link_to old_image_project_path(@project,img)  do %>
              <%= cl_image_tag(img.photo, width: 200, crop: :fill, class: 'swap-image') %>
+
+             <% end %>
              <p><%= img.created_at.strftime("%B %d %Y %k:%M") %></p>
              <div class="swap-image">view version</div>
 
