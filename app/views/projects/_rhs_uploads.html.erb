@@ -1,6 +1,14 @@
 <div class="scroll-container">
 
+            <% if @project_images.length > 1 %>
+
             <p>Previous Versions</p>
+
+            <% else %>
+
+            <p>There are no previous versions</p>
+
+            <% end %>
 
             <% @project_images.each_with_index do |img, idx| %>
 

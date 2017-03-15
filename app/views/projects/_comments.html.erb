@@ -2,23 +2,23 @@
 
         <div class="show_main_image">
 
-        <div class="icon-trash">
+        <div class="icon-trash text-right">
 
 
-
-
-
-
-          <%= cl_image_tag(@first_image.photo, width: 300, crop: :fill, class: 'large-image') %>
+          <%= link_to project_image_path(@first_image), method: :delete do %>
           <div class="trash"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+          <% end %>
 
           </div>
+          <%= cl_image_tag(@first_image.photo, width: 300, crop: :fill, class: 'large-image') %>
+
+
 
         </div>
 
 
-        <%= link_to 'Destroy', project_image_path(@first_image), method: :delete %>
-        <p class="text-center">Comments</p>
+
+        <p class="text-center">&nbsp;</p>
         <div class="comments">
 
           <% @first_image.comments.order(created_at: :asc).each_with_index do |com, index| %>
@@ -31,7 +31,7 @@
 
             <div class="comment">
               <ul class="list-inline"><li>
-                <p><b><%= com.user.name %></b> <%= com.created_at.strftime("%Y-%m-%d")  %></p>
+                <p><b><%= com.user.name %></b> <span class="eleven_font"><%= com.created_at.strftime("%Y-%m-%d")  %></span></p>
                 <p><%= com.content %></p>
               </li>
             </ul>
@@ -52,15 +52,29 @@
           </div>
 
           <div>
-            <!-- style="position: fixed; bottom: 20px; width: 50%" -->
 
-            <%= render 'comments/form', image: @first_image %>
+
+            <!-- style="position: fixed; bottom: 20px; width: 50%" -->
+            <% unless @first_image.comments.any? %>
+            <div class="no-comment">There are no comments yet for this item <i class="fa fa-comment-o fa-4x" aria-hidden="true"></i></div>
+             <div class="spacer">&nbsp;</div>
+            <% end %>
+
+            <%= render 'comments/form', image: @first_image, class: 'sticky' %>
+            <div class="spacer">&nbsp;</div>
 
           </div>
           <% else %>
 
-          <%= image_tag('placeholder.jpg', class: 'placeholder') %>
+           <div class="spacer">&nbsp;</div>
+              <div class="spacer">&nbsp;</div>
+                 <div class="spacer">&nbsp;</div>
+          <div class="text-center">
+          <p><i class="fa fa-picture-o fa-4x" aria-hidden="true"></i>
+</p>
 
+          <p>Begin by uploading an image</p>
+</div>
 
 
 

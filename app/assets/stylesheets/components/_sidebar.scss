@@ -1,0 +1,32 @@
+.sidebar {
+  height: 100%;
+  min-height: 800px;
+
+  background-color: #333031;
+  color: white;
+
+  ul {
+    padding: 5px;
+    padding-top: 134px;
+    position: fixed;
+  }
+
+  li {
+    padding: 5px 0px 5px 15px;
+    border-radius: 7px;
+    margin: 5px;
+  }
+
+  li:hover {
+    background-color: #4F4247;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+
+  }
+  a:hover {
+    color: white;
+  }
+}

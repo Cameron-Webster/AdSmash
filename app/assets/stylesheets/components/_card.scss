@@ -1,0 +1,87 @@
+.project-search-result-card {
+  color: black;
+
+}
+.project-card {
+  border: 1px solid #ccc;
+  margin: 4%;
+  padding: 3%;
+}
+
+.project-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 10px 0;
+}
+
+.notifications {
+  border: 1px solid #ccc;
+  color: #fff;
+  float: right;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 4px 5px 5px 5px;
+  line-height: 20px;
+  text-align: center;
+  background-color: #ccc;
+}
+
+.deadline {
+font-size: 16px;
+}
+
+.project-card-details{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 300;
+  font-size: 16px;
+  color: black;
+  position:relative;
+
+}
+
+// .project-name {
+//   position: absolute;
+//   bottom: 50px;
+// }
+
+.text-regular {
+  color: black;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+
+.text-thin {
+  font-weight: 300;
+  font-size: 16px;
+  color: black;
+}
+
+.project-brand {
+    position: absolute;
+    bottom: 20px;
+}
+
+.project-last-image {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
