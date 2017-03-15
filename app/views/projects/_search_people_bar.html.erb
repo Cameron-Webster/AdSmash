@@ -1,4 +1,4 @@
-<%= simple_form_for :search_people,  :url => projects_path, method: :get, html: {class: 'sub-search'} do |f| %>
+<%= simple_form_for :search_people,  :url => projects_path, method: :get, html: {class: 'sub-search form-control2'} do |f| %>
   <%= f.input :people, input_html: {class: 'thin-form '  },  label_html: {class: 'sr-only'  } , placeholder: 'Search by people'%>
   <button type="submit" class="btn grey-button">
     <i class="fa fa-search" aria-hidden="true"></i>

@@ -1,66 +1,67 @@
-<%= render 'shared/secondnavbar'%>
 
-<div id="wrapper2">
-    <div class="container">
-      <div class="row">
-        <div class="project-search-results">
-          <% @projects.each do |project| %>
-            <%= render "project", project: project %>
-          <% end %>
-        </div>
-     </div>
-   </div>
+<div id="sbwrapper">
+      <div id="sidebar-wrapper">
+          <ul class="sidebar-nav">
+             <%= render 'shared/sidebar' %>
+          </ul>
+      </div>
+      <div id="page-content-wrapper">
+          <div class="page-content">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <!-- content of page -->
+                          <%= render 'shared/secondnavbar'%>
+                           <div class="project-search-results">
+                              <% @projects.each do |project| %>
+                                <div class="col-xs-12 col-sm-4 ">
+                                  <%= render "project_search_result_card", project: project %>
+                                </div>
+                                <% end %>
+                            </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
-
 
 <% content_for :after_js do %>
 <script>
 var activity = {};
     setInterval(function(){
 
+      $.ajax({
+        method: "GET",
+        url: "<%= notifications_path %>",
+        success: function (data) {
+
+          //for activity count per project
+
+          var projects_to_update = [];
+          var counter = {};
 
 
-          $.ajax({
-            method: "GET",
-            url: "<%= notifications_path %>",
-            success: function (data) {
+        for (var obj in data) {
+          projects_to_update.push(data[obj].notifiable)
+          activity[data[obj].id] = [data[obj].notifiable, data[obj].actor, data[obj].action]
+        };
 
-              //for activity count per project
+        for (var i = 0; i < projects_to_update.length; i++) {
+          counter[projects_to_update[i]] = counter[projects_to_update[i]] + 1 || 1
+        }
+          // console.log(counter)
+          for(var prop in counter){
+            $('.cnt' + prop).text(counter[prop])
+          }
 
-              var projects_to_update = [];
-              var counter = {};
+          console.log(activity);
 
-
-            for (var obj in data) {
-              projects_to_update.push(data[obj].notifiable)
-              activity[data[obj].id] = [data[obj].notifiable, data[obj].actor, data[obj].action]
-            };
-
-            for (var i = 0; i < projects_to_update.length; i++) {
-              counter[projects_to_update[i]] = counter[projects_to_update[i]] + 1 || 1
-            }
-              // console.log(counter)
-              for(var prop in counter){
-                $('.cnt' + prop).text(counter[prop])
-              }
-
-              // for(var prop in activity) {
-              //   $('.activity ul').text('<li>' + activity[prop][1] + ' ' + activity[prop][2] + '</li>')
-              // }
-
-
-
-              console.log(activity);
-
-
-
-            },
-              error: function(jqXHR) {
-          alert(jqXHR.responseText);
-            }
-          });
-        }, 20000);
-
-
+        },
+          error: function(jqXHR) {
+      alert(jqXHR.responseText);
+        }
+      });
+    }, 20000);
 </script>
 <% end %>
