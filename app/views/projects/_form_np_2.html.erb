@@ -1,5 +1,12 @@
+<div class="modal-body">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="step_two"></div>
 
-<h1>Step 2</h1>
+    </div>
+
+  </div>
+
 
 
 <div class="form-inputs">
@@ -8,12 +15,17 @@
   <%= f.input :purpose %>
   <%= f.input :target %>
   <%= f.input :position %>
-
 </div>
+
+
 <div class="form-actions">
-  <%= link_to "Go Back", '#', class: 'backButton'%>
-  <%= f.button :submit , "CREATE!" %>
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <%= button_to "Back", '#', class: 'backButton btn btn-default pull-left'%>
+  <%= f.button :submit , "CREATE!", class: 'btn btn-primary pull-right' %>
+    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+</div>
+
+ <div class="marginb"></div>
+
 
 </div>
 
