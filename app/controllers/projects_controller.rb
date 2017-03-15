@@ -56,6 +56,7 @@ class ProjectsController < ApplicationController
 
 
   def edit
+
     if params[:search]
       @users = User.where("lower(email) ILIKE ?", "%#{params[:search]}%")
     end

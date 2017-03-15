@@ -240,9 +240,15 @@ height: 300px;
   display: hidden;
 }
 
-// .outer {
-//   height: 800px;
-// }
+.remove_link {
+    visibility: hidden;
+    position:absolute;
+    top: 4px;
+    right:5px;
+}
+.brief:hover .remove_link {
+    visibility:visible;
+}
 
 
 }

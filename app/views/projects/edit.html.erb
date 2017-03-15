@@ -1,8 +1,13 @@
-<%= simple_form_for(@project) do |f| %>
-<%= f.error_notification %>
-<%= render 'form_np_1', f:f %>
-<% end %>
 
+<% if params[:step] == '2'  %>
+
+  <%= render 'form_np_2', project: @project %>
+
+<% elsif params[:step] == '3' %>
+
+<%= render 'form_success', project: @project %>
+
+<% end %>
 
 
 
