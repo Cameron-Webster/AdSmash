@@ -49,11 +49,30 @@
 
          <div id="menu1" class="tab-pane fade">
 
-          <div class="col-sm-8 grey-bg">
-            <%= simple_form_for(@project) do |f| %>
+          <div class="col-sm-8 grey-bg brief">
+
+
+            <h1>Requirements</h1>
+          <p><%= @project.requirement.length > 0 ? @project.requirement : "Please specify requirements" %><p>
+          <h1>Position</h1>
+          <p><%= @project.position.length > 0 ? @project.purpose : "Please specify market position" %></p>
+          <h1>Purpose</h1>
+          <p><%= @project.purpose.length > 0 ? @project.purpose : "Please specify purpose of cam,paign" %></p>
+          <h1>Target</h1>
+         <p> <%= @project.target.length > 0 ? @project.target : "Please specify target audience" %></p>
+        <!--     <%= simple_form_for(@project) do |f| %>
             <%= f.error_notification %>
                <%= render 'form_np_2',{project: @project, f:f} %>
-            <% end %>
+            <% end %> -->
+
+            <div class="remove_link">
+        <%= link_to  edit_project_path(@project) do %>
+             <i class="fa fa-pencil fa-1x" aria-hidden="true"></i>
+
+             <% end %>
+
+        </a>
+    </div>
          </div>
 
        </div>
@@ -62,17 +81,19 @@
 
      <div class="col-sm-4 right-column">
 
-      <%= render 'rhs_uploads' %>
+     <div class="white_backround">
 
-      <div class="white_backround">
-
-       <div class="new_img" style="position: fixed; bottom: 0px;">
+       <div class="new_img">
 
         <%= link_to "New Image", new_project_image_path(@project) %>
 
       </div>
 
     </div>
+
+      <%= render 'rhs_uploads' %>
+
+
 
   </div>
 
@@ -107,7 +128,7 @@
         data: proj,
         success: function (argument) {
           // body...
-          alert("succes")
+
         },
         error: function(jqXHR) {
           alert(jqXHR.responseText);
@@ -121,18 +142,15 @@
     });
 
     $('.fa-thumbs-o-up').on('click', function() {
-      $("input[value='Like']").trigger('click');
+
+      $(this).parent().find(".button_to input[type='submit']").trigger('click');
     });
 
     $('.fa-thumbs-o-down').on('click', function(){
-      $("input[value='dislike']").trigger('click');
+      $(this).parent().find(".button_to input[type='submit']").trigger('click');
     })
 
-    $('.swap-image').on('click', function(){
 
-
-
-    });
   </script>
   <% end %>
 

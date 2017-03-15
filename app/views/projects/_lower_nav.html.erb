@@ -9,7 +9,9 @@
 
 
               <li>
-                <i class="fa fa-plus" aria-hidden="true" style="color: black;"></i> Invite
+              <%= link_to invite_users_path(@project) do %>
+                <i class="fa fa-plus" aria-hidden="true"></i> Invite
+                <% end %>
               </li>
               <li>
 
