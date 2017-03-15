@@ -1,119 +1,90 @@
 
+<div class="show">
+<div class="container-fluid">
 
+  <div class="row">
 
-<ul>
-  <% @project.users.each do |worker| %>
-    <li> <%= image_tag worker.avatar, class: "avatar dropdown-toggle" %>
+    <div class="col-sm-2">
 
-    </li>
-  <%end %>
-</ul>
-<%= link_to 'Back', projects_path %> <br>
-<%= link_to 'Edit project', edit_project_path(@project) %> <br>
-<%= link_to "New Image", new_project_image_path(@project) %> <br>
+      <p>hsghss</p>
+      <p>jshdsqd</p>
+      <p>hsghss</p>
+      <p>jshdsqd</p>
+      <p><%= link_to 'Back', projects_path %></p>
 
+    </div>
 
-<h4>Partecipants to the project</h4>
-<% @project.users.each do |user|  %>
+    <div class="col-sm-10" style="border: 1px dotted black">
 
-<li ><%if user[:avatar] != nil  %>
-  <%=image_tag(user.avatar, size: "40x40", alt: "No Image")  %>
-  <% else  %>
-  <%=image_tag('http://www.ceskymac.cz/wp-content/uploads/2012/07/GuestUserIcon.png', size: "40x40", alt: "Edit Entry")  %>
-  <% end %>
+      <div class="row">
 
-  <%=  user.name %>
-  <%if user.project_teams.find_by_id(params[:id]) != nil %>
-  Admin? <%= user.project_teams.find_by_id(params[:id]).admin %>
-  <%else  %>
-  Admin? false
-  <%end  %>
+        <div class="col-sm-12">
 
-</li>
+          <%= render 'lower_nav' %>
 
-<%  end  %>
+        </div>
 
+      </div>
 
+      <ul class="nav nav-tabs">
 
-<% @project.images.sort {|x, y| y[:created_at] <=> x[:created_at]}.each_with_index do |img, idx| %>
-<ul>
-  <% if idx == 0 %>
-  <div id="main-image">
-    <li style="background: #ededed; margin: 20px 0; padding: 15px">
-      <%= img.created_at.strftime("%Y-%m-%d") %>
-      <%= cl_image_tag(img.photo, width: 300, crop: :fill, class: 'large-image') %>
-      <%= link_to 'Destroy', project_image_path(img), method: :delete %> <br>
+        <li class="active"><a data-toggle="tab" href="#home"><h1>Discussion Board</h1></a></li>
 
-      <ul>
-        <% img.comments.order(created_at: :desc).each do |com| %>
-        <li><%= com.content %></li>
+        <li><a data-toggle="tab" href="#menu1"><h1>Brief</h1></a></li>
 
-        <li> Like <%=  com.likes  %></li>
-
-
-       <%# button_to "Like", { :controller => "comments", :action => "increase_likes", image_id: img.id} %>
-       <%= button_to "Like",  likes_path(@project,img,com,like: 'true'), method: :post %>
-       <%= button_to "dislike",  likes_path(@project,img,com,like: 'false'), method: :post %>
-
-         <li>Dislikes <%=  com.dislikes  %></li>
-
-
-
-
-
-
-
-
-
-
-
-        <p> <%= com.created_at  %></p>
-        <% end  %>
       </ul>
 
-      <%= render 'comments/form', image: img %>
+      <div class="row outer">
+
+        <div class="tab-content">
+
+          <div id="home" class="tab-pane fade in active">
+
+            <div class="col-sm-8 grey-bg" style="border: 2px solid red; height: 800px;">
+
+             <%= render 'comments' %>
+
+           </div>
+
+         </div>
+
+         <div id="menu1" class="tab-pane fade">
+
+          <div class="col-sm-8 grey-bg" style="border: 2px solid red; height: 800px;">
+
+           <%= render 'form_np_2', project: @project %>
+
+         </div>
+
+       </div>
+
+     </div>
+
+     <div class="col-sm-4 right-column" style="border: 1px dotted black;">
+
+      <%= render 'rhs_uploads' %>
+
+      <div class="white_backround">
+
+       <div class="new_img" style="position: fixed; bottom: 0px;">
+
+        <%= link_to "New Image", new_project_image_path(@project) %>
+
+      </div>
+
     </div>
-    <% end %>
-  </li>
-</ul>
-<% end %>
 
+  </div>
 
-<% @project.images.sort {|x, y| y[:created_at] <=> x[:created_at]}.each_with_index do |img, idx| %>
-<ul>
- <div class="comments">
-  <li style="background: #ededed; margin: 20px 0; padding: 15px">
-    <%= img.created_at.strftime("%Y-%m-%d") %>
-    <%= cl_image_tag(img.photo, width: 300, crop: :fill, class: 'small-image') %>
-
-
-    <div style="display: none">
-      <%= link_to 'Destroy', project_image_path(img), method: :delete %> <br>
-      <ul>
-        <% img.comments.each do |com| %>
-        <li><%= com.content %>  </li>
-
-        <p> <%= com.likes %> Likes </p>
-
-
-
-
-        <p> <%= com.created_at  %></p>
-        <% end  %>
-      </ul>
-      <%= render 'comments/form', image: img %>
-    </div>
-  </ul>
 </div>
-<% end %>
 
+</div>
 
-<%= render 'sign_up_form' %>
+</div>
 
-<br>
-<br>
+</div>
 
-
+</div>
 
 <% content_for :after_js do %>
 <script>
@@ -123,32 +94,47 @@
     $('#main-image div').css("display", "block");
     $(".small-image:first").addClass('large-image').removeClass('small-image');
   });
-        // $(window).load(function()
-      $(window).load(function() {
+    // $(window).load(function()
+    $(window).load(function() {
 
-          var proj = JSON.stringify({
-            "project": <%= @project.id %>
-          });
+      var proj = JSON.stringify({
+        "project": <%= @project.id %>
+      });
 
-
-          $.ajax({
-            method: "DELETE",
-            url: "<%= notification_path(@project) %>",
-            data: proj,
-            success: function (argument) {
-              // body...
-              alert("succes")
-            },
-              error: function(jqXHR) {
+      $.ajax({
+        method: "DELETE",
+        url: "<%= notification_path(@project) %>",
+        data: proj,
+        success: function (argument) {
+          // body...
+          alert("succes")
+        },
+        error: function(jqXHR) {
           alert(jqXHR.responseText);
-            }
-          });
+        }
+      });
+
+    });
+
+    $('.attachment').on('click', function(){
+      $('#comment_attachment').trigger('click');
+    });
+
+    $('.fa-thumbs-o-up').on('click', function() {
+      $("input[value='Like']").trigger('click');
+    });
+
+    $('.fa-thumbs-o-down').on('click', function(){
+      $("input[value='dislike']").trigger('click');
+    })
+
+    $('.swap-image').on('click', function(){
 
 
 
-  });
-</script>
-<% end %>
+    });
+  </script>
+  <% end %>
 
 
 

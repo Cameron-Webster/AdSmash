@@ -17,18 +17,35 @@ class ProjectsController < ApplicationController
       end
     end
 
- end
-
-  def show
-    @list = @project.users
     search_content
     search_people
     search_date
     list_colleagues
-
   end
 
+  def show
 
+    @list = @project.users
+
+    @project_images = @project.images.sort {|x, y| y[:created_at] <=> x[:created_at]}
+
+    url = "http://static.giantbomb.com/uploads/original/9/99864/2419866-nes_console_set.png"
+
+    if @project_images
+
+
+      @first_image = params[:display_image].present? ? Image.find(params[:display_image]) : @project_images.first
+
+
+    else
+
+     Image.create(project_id: @project.id, remote_photo_url: 'http://apod.nasa.gov/apod/image/1407/m31_bers_960.jpg')
+
+    @first_image = Image.last
+
+
+    end
+  end
 
 
   def new
@@ -65,10 +82,6 @@ class ProjectsController < ApplicationController
       end
     end
   end
-
-  def show
-  end
-
 
   def update
     respond_to do |format|
@@ -184,15 +197,20 @@ class ProjectsController < ApplicationController
 
   def list_colleagues
     @users_list = []
-    current_user.projects.each do |project|
-      @users_list << project.users
-      @users_list2 = @users_list.flatten(1)
+
+
+    unless current_user.projects.empty?
+
+      current_user.projects.each do |project|
+        @users_list << project.users
+        @users_list2 = @users_list.flatten(1)
+      end
+      @colleagues_names = []
+      @users_list2.each do |user|
+         @colleagues_names << [user.name, user.last_name].join(" ") if user != current_user
+      end
+      @colleagues_names.uniq!
     end
-    @colleagues_names = []
-    @users_list2.each do |user|
-       @colleagues_names << [user.name, user.last_name].join(" ") if user != current_user
-    end
-    @colleagues_names.uniq!
   end
 
 

@@ -27,6 +27,8 @@ validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z
 
   before_save :normalize
 
+
+
   def normalize
     self.name = self.name.downcase
     self.last_name = self.last_name.downcase

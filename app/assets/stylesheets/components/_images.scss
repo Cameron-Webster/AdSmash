@@ -1,8 +1,19 @@
 
 
 .large-image {
-  width: 300px;
+
+  display: block;
+  max-width:400px;
+  max-height:500px;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+
 }
 .small-image{
   width: 100px;
+}
+
+.comment-image {
+  width: 100%;
 }

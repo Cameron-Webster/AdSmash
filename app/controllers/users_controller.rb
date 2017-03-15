@@ -6,6 +6,8 @@ def create
   # find this user and destroy it from pending invitations
   @user.save
 
+  @user.avatar
+
   if  params[:user][:invite_project].present?
       project = Project.find(params[:user][:invite_project].to_i)
       ProjectTeam.create(project: project, user: @user, admin: false )
