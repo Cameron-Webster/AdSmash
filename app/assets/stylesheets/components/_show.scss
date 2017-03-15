@@ -1,4 +1,9 @@
+
+
+
 .show {
+
+  color: #4F4247;
 
   ul {
     -webkit-margin-before: 0em;
@@ -15,6 +20,12 @@
 .margin_paddingless {
   padding: 0px;
   margin: 0px;
+}
+
+
+
+.fluid {
+  padding-left: 0px;
 }
 
 
@@ -179,7 +190,7 @@
 }
 
 a {
-  color: black;
+  color: #4F4247;
 }
 
 a:hover {
