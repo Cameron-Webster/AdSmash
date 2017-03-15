@@ -51,10 +51,9 @@
          <div id="menu1" class="tab-pane fade">
 
           <div class="col-sm-8 grey-bg" style="border: 2px solid red; height: 800px;">
-            <%= simple_form_for(@project) do |f| %>
-            <%= f.error_notification %>
-               <%= render 'form_np_2',{project: @project, f:f} %>
-            <% end %>
+
+           <%= render 'form_np_2', project: @project %>
+
          </div>
 
        </div>
