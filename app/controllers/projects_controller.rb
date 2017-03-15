@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_project, only: [:show, :edit, :update, :destroy,:add_users,:invite_view_users]
+  before_action :new_project, only: [:new,:index]
 
   def index
 
@@ -17,29 +17,41 @@ class ProjectsController < ApplicationController
       end
     end
 
-    # @list = @project.users
     search_content
     search_people
     search_date
     list_colleagues
-
-
- end
-
-  def show
-
   end
 
 
 
 
-  def new
+  def show
 
-    if params[:project_id].present?
-      @project = Project.find(params[:project_id])
+    @list = @project.users
+
+    @project_images = @project.images.sort {|x, y| y[:created_at] <=> x[:created_at]}
+
+    url = "http://static.giantbomb.com/uploads/original/9/99864/2419866-nes_console_set.png"
+
+    if @project_images
+
+
+      @first_image = params[:display_image].present? ? Image.find(params[:display_image]) : @project_images.first
+
+
     else
-      @project = Project.new
+
+     Image.create(project_id: @project.id, remote_photo_url: 'http://apod.nasa.gov/apod/image/1407/m31_bers_960.jpg')
+
+    @first_image = Image.last
+
+
     end
+  end
+
+
+  def new
   end
 
 
@@ -52,15 +64,13 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(proj_params)
-
-
+    @project.status="live"
     respond_to do |format|
       if @project.save
         project_link = ProjectTeam.new(user_id: current_user.id, project_id: @project.id, admin: true)
-
         if project_link.save
           Image.new(project_id: @project.id, photo: 'images/placeholder.jpg')
-          format.html { redirect_to edit_project_path(@project, step: '2')}
+          format.html { redirect_to invite_users_path(@project)}
         end
       else
           format.html { render :new }
@@ -68,16 +78,12 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def show
-  end
-
-
   def update
     respond_to do |format|
       if @project.update(proj_params)
         format.html {
 
-          if params[:step] == "1"
+          if params[:step] == "3"
             redirect_to edit_project_path(@project, step: 2)
 
 
@@ -186,22 +192,36 @@ class ProjectsController < ApplicationController
 
   def list_colleagues
     @users_list = []
-    current_user.projects.each do |project|
-      @users_list << project.users
-      @users_list2 = @users_list.flatten(1)
+
+
+    unless current_user.projects.empty?
+
+      current_user.projects.each do |project|
+        @users_list << project.users
+        @users_list2 = @users_list.flatten(1)
+      end
+      @colleagues_names = []
+      @users_list2.each do |user|
+         @colleagues_names << [user.name, user.last_name].join(" ") if user != current_user
+      end
+      @colleagues_names.uniq!
     end
-    @colleagues_names = []
-    @users_list2.each do |user|
-       @colleagues_names << [user.name, user.last_name].join(" ") if user != current_user
+  end
+  def invite_view_users
+    if params[:search]
+      @users = User.where("lower(email) ILIKE ?", "%#{params[:search]}%")
     end
-    @colleagues_names.uniq!
   end
 
 
-
-
   private
-
+    def new_project
+        if params[:project_id].present?
+          @project = Project.find(params[:project_id])
+        else
+          @project = Project.new
+        end
+    end
     def set_project
       @project = Project.find(params[:id])
     end

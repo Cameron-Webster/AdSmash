@@ -46,6 +46,11 @@
     <!-- Profile picture and dropdown -->
     <div class="navbar-wagon-item">
       <div class="dropdown">
+
+         <span class="navbar-name"><%= current_user.name.capitalize %>
+         <%= current_user.last_name.capitalize %></span>
+
+
         <% if current_user[:avatar].nil?  %>
           <%= image_tag 'http://www.ceskymac.cz/wp-content/uploads/2012/07/GuestUserIcon.png', class: "avatar avatar-square dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
         <% else  %>
@@ -89,6 +94,7 @@
     </div>
   </div>
 </div>
+
 
 <% content_for(:after_js) do %>
   <script>
