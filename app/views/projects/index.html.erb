@@ -31,9 +31,11 @@ end -->
   </thead>
 
   <tbody>
+  <% unless @colleagues_names.nil? %>
    <ul><% @colleagues_names.each do |colleague| %>
      <li><%= link_to colleague.split.map(&:capitalize).join(' '), projects_path(filter: colleague.split.map.first) %></li>
 
+     <% end %>
      <% end %>
      <li><%= link_to "live projects", projects_path(filter: "live")  %></li>
      <li><%= link_to "closed projects", projects_path(filter: "closed")  %></li>
@@ -89,7 +91,6 @@ end -->
 
 
 
-<button class="comments">submit</button><div class="out"></div>
 
 <% content_for :after_js do %>
 <script>

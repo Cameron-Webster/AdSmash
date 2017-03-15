@@ -1,0 +1,28 @@
+<ul class="list-inline">
+            <li>
+            <ul>
+            <li><%= @project.name %> <%= @project.brand %></li>
+            <li> <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<%= pluralize(((@project.deadline - Date.today).to_i), 'day') %> left
+</li>
+            </ul>
+            </li>
+
+
+              <li>
+                <i class="fa fa-plus" aria-hidden="true"></i> Invite
+              </li>
+              <li>
+
+                <i class="fa fa-download" aria-hidden="true"></i> download
+              </li>
+
+              <li>
+                 <i class="fa fa-trash-o" aria-hidden="true"></i>Delete
+
+
+              </li><li>
+              <%= link_to 'Edit project', edit_project_path(@project) %> <br>
+            </li><li>
+            <%= render 'sign_up_form' %>
+          </li>
+        </ul>

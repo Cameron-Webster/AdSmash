@@ -1,0 +1,65 @@
+ <% if @first_image %>
+
+        <div class="show_main_image" style="border: 2px solid red">
+
+        <div class="icon-trash">
+
+
+
+
+          <%= cl_image_tag(@first_image.photo, width: 300, crop: :fill, class: 'large-image') %>
+          <div class="trash"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+
+          </div>
+
+        </div>
+
+
+        <%= link_to 'Destroy', project_image_path(@first_image), method: :delete %>
+        <p class="text-center">Comments</p>
+        <div class="comments">
+
+          <% @first_image.comments.order(created_at: :asc).each_with_index do |com, index| %>
+
+          <div class="comment-container <%= 'left' if index.odd? %>">
+
+            <div class="<%= 'hide' if index.odd? %>">
+              <%=image_tag(com.user.avatar, size: "35x35", alt: "No Image", class: "border-adm") %>
+            </div>
+
+            <div class="comment">
+              <ul class="list-inline"><li>
+                <p><b><%= com.user.name %></b> <%= com.created_at.strftime("%Y-%m-%d")  %></p>
+                <p><%= com.content %></p>
+              </li>
+            </ul>
+            <ul class="list-inline">
+              <li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                <%= button_to "Like",  likes_path(@project,@first_image,com,like: 'true'), method: :post %> </li><li><%=  com.likes  %></li>
+                <li><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                  <%= button_to "dislike",  likes_path(@project,@first_image,com,like: 'false'), method: :post %></li><li> <%=  com.dislikes  %></li>
+                </ul>
+              </div>
+
+              <div class="<%= 'hide' if index.even? %>">
+                <%=image_tag(com.user.avatar, size: "35x35", alt: "No Image", class: "border-adm") %>
+              </div>
+            </div>
+
+            <% end  %>
+          </div>
+
+          <div>
+            <!-- style="position: fixed; bottom: 20px; width: 50%" -->
+
+            <%= render 'comments/form', image: @first_image %>
+
+          </div>
+          <% else %>
+
+          <%= image_tag('placeholder.jpg', class: 'placeholder') %>
+
+
+
+
+          <% end %>
