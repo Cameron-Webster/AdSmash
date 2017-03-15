@@ -1,99 +1,105 @@
 <div class="show">
-<div class="container-fluid">
+  <div class="container-fluid">
 
-  <div class="row">
+    <div class="row">
 
-    <div class="col-sm-2">
+      <div class="col-sm-2">
 
-      <p>hsghss</p>
-      <p>jshdsqd</p>
-      <p>hsghss</p>
-      <p>jshdsqd</p>
-      <p><%= link_to 'Back', projects_path %></p>
+        <p>hsghss</p>
+        <p>jshdsqd</p>
+        <p>hsghss</p>
+        <p>jshdsqd</p>
+        <p><%= link_to 'Back', projects_path %></p>
 
-    </div>
+      </div>
 
-    <div class="col-sm-10">
+      <div class="col-sm-10">
 
-      <div class="row">
+        <div class="row">
 
-        <div class="col-sm-12">
+          <div class="col-sm-12">
 
-          <%= render 'lower_nav' %>
+            <%= render 'lower_nav' %>
+
+          </div>
+
+        </div>
+
+        <ul class="nav nav-tabs">
+
+          <li class="active"><a data-toggle="tab" href="#home"><h1>Discussion Board</h1></a></li>
+
+          <li><a data-toggle="tab" href="#menu1"><h1>Brief</h1></a></li>
+
+        </ul>
+
+        <div class="row outer">
+
+          <div class="tab-content">
+
+            <div id="home" class="tab-pane fade in active">
+
+            <div class="col-sm-8 grey-bg border-right full-height">
+
+               <%= render 'comments' %>
+
+             </div>
+
+           </div>
+
+           <div id="menu1" class="tab-pane fade">
+
+            <div class="col-sm-8 grey-bg brief border-right full-height">
+
+
+              <h1 class="brief-padding">Requirements</h1>
+              <p><%= @project.requirement.length > 0 ? @project.requirement : "Please specify requirements" %><p>
+                <h1 class="brief-padding">Position</h1>
+                <p><%= @project.position.length > 0 ? @project.purpose : "Please specify market position" %></p>
+                <h1 class="brief-padding">Purpose</h1>
+                <p><%= @project.purpose.length > 0 ? @project.purpose : "Please specify purpose of cam,paign" %></p>
+                <h1 class="brief-padding">Target</h1>
+                <p> <%= @project.target.length > 0 ? @project.target : "Please specify target audience" %></p>
+        <!--     <%= simple_form_for(@project) do |f| %>
+            <%= f.error_notification %>
+               <%= render 'form_np_2',{project: @project, f:f} %>
+               <% end %> -->
+
+               <div class="remove_link">
+                <%= link_to  edit_project_path(@project) do %>
+                <i class="fa fa-pencil fa-1x" aria-hidden="true"></i>
+
+                <% end %>
+
+              </a>
+            </div>
+          </div>
 
         </div>
 
       </div>
 
-      <ul class="nav nav-tabs">
+      <div class="col-sm-4 right-column border-left">
 
-        <li class="active"><a data-toggle="tab" href="#home"><h1>Discussion Board</h1></a></li>
-
-        <li><a data-toggle="tab" href="#menu1"><h1>Brief</h1></a></li>
-
-      </ul>
-
-      <div class="row outer">
-
-        <div class="tab-content">
-
-          <div id="home" class="tab-pane fade in active">
-
-            <div class="col-sm-8 grey-bg">
-
-             <%= render 'comments' %>
-
-           </div>
-
-         </div>
-
-         <div id="menu1" class="tab-pane fade">
-
-          <div class="col-sm-8 grey-bg brief">
+       <div class="white_backround">
 
 
-            <h1>Requirements</h1>
-          <p><%= @project.requirement.length > 0 ? @project.requirement : "Please specify requirements" %><p>
-          <h1>Position</h1>
-          <p><%= @project.position.length > 0 ? @project.purpose : "Please specify market position" %></p>
-          <h1>Purpose</h1>
-          <p><%= @project.purpose.length > 0 ? @project.purpose : "Please specify purpose of cam,paign" %></p>
-          <h1>Target</h1>
-         <p> <%= @project.target.length > 0 ? @project.target : "Please specify target audience" %></p>
-        <!--     <%= simple_form_for(@project) do |f| %>
-            <%= f.error_notification %>
-               <%= render 'form_np_2',{project: @project, f:f} %>
-            <% end %> -->
 
-            <div class="remove_link">
-        <%= link_to  edit_project_path(@project) do %>
-             <i class="fa fa-pencil fa-1x" aria-hidden="true"></i>
+        <%= link_to new_project_image_path(@project) do %>
+        <div class="new_img">
+          <i class="fa fa-plus" aria-hidden="true"></i> New Image
+        </div>
+        <% end %>
 
-             <% end %>
 
-        </a>
-    </div>
-         </div>
-
-       </div>
-
-     </div>
-
-     <div class="col-sm-4 right-column">
-
-     <div class="white_backround">
-
-       <div class="new_img">
-
-        <%= link_to "New Image", new_project_image_path(@project) %>
 
       </div>
-
-    </div>
 
       <%= render 'rhs_uploads' %>
 
 
+
+    </div>
 
   </div>
 
@@ -104,8 +110,7 @@
 </div>
 
 </div>
-
-</div>
+<div class="spacer">&nbsp;</div>
 
 <% content_for :after_js do %>
 <script>
