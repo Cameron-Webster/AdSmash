@@ -11,14 +11,32 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
   </head>
   <body>
-    <%= render 'shared/navbar' unless @disable_nav%>
-    <%= render 'shared/flashes' %>
-    <%= yield %>
-    <%= render 'shared/footer' %>
-    <%= javascript_include_tag 'application' %>
-    <%= yield(:after_js) %>
-  <!-- Importing an online javascript for my date picker -->
-    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-   <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+               <%= render 'shared/sidebar' %>
+            </ul>
+        </div>
+        <div id="page-content-wrapper">
+            <div class="page-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- content of page -->
+                            <%= render 'shared/navbar' unless @disable_nav%>
+                            <%= render 'shared/flashes' %>
+                            <%= yield %>
+                            <%= render 'shared/footer' %>
+                            <%= javascript_include_tag 'application' %>
+                            <%= yield(:after_js) %>
+                            <!-- Importing an online javascript for my date picker -->
+                            <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+                            <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   </body>
 </html>

@@ -39,6 +39,8 @@
   align-items: center;
   justify-content: space-between;
   width: 50%;
+  position: absolute;
+  right: 0px;
 }
 .navbar-wagon-project {
   a {
@@ -65,7 +67,7 @@
   display:none;
   position: absolute;
   top: 62px;
-  right: 230px;
+  right: 122px;
   width: 294px;
   border: 1px solid #ccc;
   margin: 0;

@@ -1,0 +1,7 @@
+<!-- list of users we have projects with -->
+
+  <% @colleagues_names.each do |colleague| %>
+     <li><%= link_to colleague.split.map(&:capitalize).join(' '), projects_path(filter: colleague.split.map.first) %></li>
+     <% end %>
+
+
