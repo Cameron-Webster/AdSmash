@@ -94,6 +94,8 @@ class ProjectsController < ApplicationController
 
           elsif params[:step] == "3"
             redirect_to @project
+          else
+            redirect_to projects_path
           end
 
         }
