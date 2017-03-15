@@ -1,4 +1,9 @@
+
+
+
 .show {
+
+  color: #4F4247;
 
   ul {
     -webkit-margin-before: 0em;
@@ -8,19 +13,22 @@
     -webkit-padding-start: 0px;
   }
 
-
-
-
-.icon-trash:hover {
-
-  background-color: black;
-
-  opacity: 0.5;
-
-  img {
-    z-index: -1;
-  }
+.eleven_font {
+  font-size: 11px;
 }
+
+.margin_paddingless {
+  padding: 0px;
+  margin: 0px;
+}
+
+
+
+.fluid {
+  padding-left: 0px;
+}
+
+
 
   li {
     list-style: none;
@@ -142,7 +150,7 @@
 }
 
 .grey-bg {
-  background-color: #EDEDED;
+  background-color: #FCFCFC;
 }
 
 .side-card img {
@@ -158,6 +166,17 @@
   display: block;
 }
 
+.sticky {
+  position: absolute;
+  bottom: 10px;
+}
+
+.no-comment {
+  font-size: 20px;
+  color: gray;
+  text-align: center;
+}
+
 .bottom-align-text {
   position: absolute;
   bottom: 0;
@@ -166,14 +185,35 @@
   text-align: center;
 }
 
+.full-height {
+  min-height: 570px;
+}
+
+a {
+  color: #4F4247;
+}
+
+a:hover {
+  color: red;
+}
+.spacer {
+  height: 40px;
+}
+
 .new_img {
-  background-color: red;
+  background-color: $smash-red;
   margin: 10px;
   padding: 15px;
+  color: white;
 
   a {
       color: white;
   }
+}
+
+.new_img:hover {
+  background-color: red;
+  color: white;
 }
 
 .border-adm {
@@ -203,8 +243,17 @@ button:focus {
   font-size: 11px;
 }
 
-.trash {
-  background-color: black;
+.border-right {
+  border-right: 1px solid #d8d8d8;
+}
+
+.outer {
+  border: 1px solid #d8d8d8;
+}
+
+.icon-trash {
+  padding-top: 5px;
+  font-size: 16px;
 }
 
 .right-column {
@@ -223,9 +272,14 @@ text-align: center;
   width: 100%;
 }
 
+.brief-padding {
+  padding: 6px 0px;
+
+}
+
 .scroll-container {
 
-height: 800px;
+height: 500px;
   overflow: scroll;
 
 }
