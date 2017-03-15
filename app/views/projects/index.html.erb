@@ -5,9 +5,7 @@
       <div class="row">
         <div class="project-search-results">
           <% @projects.each do |project| %>
-          <div class="col-xs-12 col-sm-4 ">
-            <%= render "project_search_result_card", project: project %>
-          </div>
+            <%= render "project", project: project %>
           <% end %>
         </div>
      </div>
