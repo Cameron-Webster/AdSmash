@@ -1,10 +1,13 @@
-<%= link_to "step 1", new_project_path(project_id: @project.id) %>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="step_two"></div>
 
-<h1>Step 2</h1>
+    </div>
 
-<%= simple_form_for(@project) do |f| %>
-<%= f.error_notification %>
-<%= hidden_field_tag :step, 2 %>
+  </div>
+
+
 
 <div class="form-inputs">
   <%= f.input :brief %>
@@ -12,11 +15,18 @@
   <%= f.input :purpose %>
   <%= f.input :target %>
   <%= f.input :position %>
+</div>
+
+
+<div class="form-actions">
+  <%= button_to "Back", '#', class: 'backButton btn btn-default pull-left'%>
+  <%= f.button :submit , "CREATE!", class: 'btn btn-primary pull-right' %>
+    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+</div>
+
+ <div class="marginb"></div>
+
 
 </div>
-<div class="form-actions">
-  <%= f.button :submit , "Create Project" %>
-</div>
-<% end %>
 
 

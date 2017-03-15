@@ -75,6 +75,7 @@ end -->
 
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
+
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <ul></ul>
@@ -89,12 +90,10 @@ end -->
 
 <div class="activity"><ul></ul></div>
 
-<%= link_to 'New Project', new_project_path %>
 
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-  <%= link_to 'New Project', new_project_path %>
-</button>
+   <%= render 'modal',  action: "NEW PROJECT"%>
+
 
 
 
