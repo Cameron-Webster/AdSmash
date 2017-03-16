@@ -11,10 +11,15 @@
 
 .grey-button {
   /*border-radius: 0px !important;*/
-  background-color: #A5A5A5;
+  background-color: $smash-red;
   font-size: 16px;
   letter-spacing: 1;
   font-weight: 400;
-
+  color: white;
+   transition: all 0.3s ease;
+  &:hover{
+    color: $gray_palette;
+    background-color: $smash-red-hover;
+  }
   // transition: all 0.3s ease;
 }
