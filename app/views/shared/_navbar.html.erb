@@ -1,20 +1,20 @@
-<div class="navbar-wagon">
+<div class="navbar-wagon" style="<%= 'width:100%; float:none;' unless user_signed_in?%>">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-  <%= image_tag "logo.png" %>
+  <%= image_tag "Adsmash_logo" %>
   <% end %>
 
 
     <% if user_signed_in? %>
 
   <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+  <div class="navbar-wagon-right hidden-xs hidden-sm" >
 
     <!-- Search form -->
     <!-- <form action="" class="navbar-wagon-search">
       <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
       <button type="submit" class="navbar-wagon-search-btn">
-        <i class="fa fa-search"></i>
+        <i class="fa fa-search"></i>, width:
       </button>
     </form> -->
 
