@@ -1,3 +1,5 @@
+
+
 <% if @first_image %>
 
         <div class="show_main_image">
@@ -23,10 +25,12 @@
 
           <% @first_image.comments.order(created_at: :asc).each_with_index do |com, index| %>
 
+          <% avatar =  com.user.avatar.present? ? current_user.avatar : "http://www.ceskymac.cz/wp-content/uploads/2012/07/GuestUserIcon.png" %>
+
           <div class="comment-container <%= 'left' if index.odd? %>">
 
             <div class="<%= 'hide' if index.odd? %>">
-              <%=image_tag(com.user.avatar, size: "35x35", alt: "No Image", class: "border-adm") %>
+              <%=image_tag(avatar, size: "35x35", alt: "No Image", class: "border-adm") %>
             </div>
 
             <div class="comment">
@@ -44,7 +48,7 @@
               </div>
 
               <div class="<%= 'hide' if index.even? %>">
-                <%=image_tag(com.user.avatar, size: "35x35", alt: "No Image", class: "border-adm") %>
+                <%=image_tag(avatar, size: "35x35", alt: "No Image", class: "border-adm") %>
               </div>
             </div>
 
