@@ -14,16 +14,15 @@
 
   <%= link_to project do %>
   <div class="project-last-image"
-
-       <%if project.images.any?  %>
-       style="background-image: url(<%= project.images.blank? ? cl_image_path('cfe5sxmawaldkgiaez6c.png', effect: "grayscale") : cl_image_path(project.images.last.photo)%>)">
-
-
+      <%if project.images.any? and project.images.last and project.images.last.photo  %>
+       style="background-image: url('<%= cl_image_path(project.images.last.photo)   %>');"
+      <%else %>
+      style="background-image: url('<%=   cl_image_path('cfe5sxmawaldkgiaez6c.png', effect: "grayscale") %>');"
        <%end %>
+        >
 
-
-  </div>
-<% end %>
+    </div>
+  <%end %>
 
   <br>
   <div class="text-regular project-name">
