@@ -12,7 +12,7 @@
   </div>
   <br>
   <div class="project-last-image"
-       style="background-image: url(<%= cl_image_path(project.images.last.photo) if project.images.last.photo.url %>)">
+       style="background-image: url(<%= cl_image_path(project.images.last.photo) if project.images.present? %>)">
   </div>
   <br>
   <div class="text-regular project-name">

@@ -1,7 +1,14 @@
   /* Main class */
-
+.secondnavbarwrapper{
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+}
 .secondnavbar{
   width: 50%;
+  margin-right: 35px;
+
 
 
   .li {
@@ -82,8 +89,8 @@
   .extended-search {
     display: none;
     position: absolute;
-    top: 62px;
-    right: 153px;
+    top: 25%;
+    right: 0;
     width: 357px;
     border: 1px solid #ccc;
     margin: 1px;
@@ -254,8 +261,12 @@
 
 }
 
-
-
+.second-search{
+  margin: 8px;
+}
+.btn-second{
+  border-radius: 0% 32% 32% 0%!important;
+}
 
 
 
