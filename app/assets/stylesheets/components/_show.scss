@@ -168,7 +168,10 @@
 
 .sticky {
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
+  margin-left: 0;
+  margin-right: 0;
+  width: 90%;
 }
 
 .no-comment {
@@ -265,6 +268,10 @@ text-align: center;
 
 }
 
+.margin-minus {
+  margin-right: -15px;
+}
+
 .white_backround {
   background-color: white;
 
@@ -279,14 +286,14 @@ text-align: center;
 .scroll-container {
 
 height: 500px;
-  overflow: scroll;
+  overflow-y: auto;
 
 }
 
 .scroll-comments {
 
-height: 300px;
-  overflow: scroll;
+height: 500px;
+  overflow-y: auto;
 
 }
 .hide {

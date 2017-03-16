@@ -45,3 +45,11 @@
     color: white;
   }
 }
+
+.show {
+  .sidebar {
+    width: inherit;
+    position: fixed;
+    top: 0;
+  }
+}
