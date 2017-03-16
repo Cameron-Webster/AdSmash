@@ -11,9 +11,11 @@
     </div>
   </div>
   <br>
-  <div class="project-last-image"
-       style="background-image: url(<%= cl_image_path(project.images.last.photo) if project.images.present? %>)">
-  </div>
+  <%= link_to project do %>
+    <div class="project-last-image"
+         style="background-image: url(<%= cl_image_path(project.images.last.photo) if project.images.present? %>)">
+    </div>
+  <% end %>
   <br>
   <div class="text-regular project-name">
     <%= project.name %>

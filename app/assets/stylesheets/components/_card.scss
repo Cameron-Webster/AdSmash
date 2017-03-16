@@ -3,9 +3,10 @@
 
 }
 .project-card {
-  border: 1px solid #ccc;
   margin: 4%;
   padding: 3%;
+  background-color: white;
+  border-radius: 4px;
 }
 
 .project-card-header {
@@ -38,7 +39,7 @@ font-size: 16px;
   align-items: center;
   font-weight: 300;
   font-size: 16px;
-  color: black;
+  color: $adsmash-text;
   position:relative;
 
 }
@@ -49,7 +50,7 @@ font-size: 16px;
 // }
 
 .text-regular {
-  color: black;
+  color: $adsmash-text;
   font-weight: 400;
   letter-spacing: 1px;
   font-size: 16px;
@@ -58,7 +59,7 @@ font-size: 16px;
 .text-thin {
   font-weight: 300;
   font-size: 16px;
-  color: black;
+  color: $adsmash-text;
 }
 
 .project-brand {
