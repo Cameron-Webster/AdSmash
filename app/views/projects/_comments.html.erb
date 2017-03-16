@@ -56,11 +56,12 @@
 
             <!-- style="position: fixed; bottom: 20px; width: 50%" -->
             <% unless @first_image.comments.any? %>
-            <div class="no-comment">There are no comments yet for this item <i class="fa fa-comment-o fa-4x" aria-hidden="true"></i></div>
+            <div class="no-comment">There are no comments yet for this item  <i class="fa fa-comment-o" aria-hidden="true"></i></div>
              <div class="spacer">&nbsp;</div>
             <% end %>
-
-            <%= render 'comments/form', image: @first_image, class: 'sticky' %>
+            <div class="sticky">
+            <%= render 'comments/form', image: @first_image %>
+            </div>
             <div class="spacer">&nbsp;</div>
 
           </div>

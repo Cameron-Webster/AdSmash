@@ -2,13 +2,15 @@
   <%=  "#{@project.name} | Adsmash" %>
 <% end %>
 <div class="show">
+
+
   <div class="container-fluid fluid">
 
-    <div class="row">
+    <div class="row margin-minus">
 
       <div class="col-sm-2 margin_paddingless">
 
-        <%= render 'sidebar' %>
+        <%= render 'sidebarshow' %>
 
 
       </div>
@@ -29,7 +31,7 @@
 
         <ul class="nav nav-tabs">
 
-          <li class="active"><a data-toggle="tab" href="#home"><h1>Discussion Board</h1></a></li>
+          <li class='active'><a data-toggle="tab" href="#home"><h1>Discussion Board</h1></a></li>
 
           <li><a data-toggle="tab" href="#menu1"><h1>Brief</h1></a></li>
 
@@ -83,22 +85,22 @@
 
       <div class="col-sm-4 right-column border-left">
 
-       <div class="white_backround">
 
 
 
-        <%= link_to new_project_image_path(@project) do %>
+
+
         <div class="new_img">
-          <i class="fa fa-plus" aria-hidden="true"></i> New Image
+
           <%= render 'images/modal_new_image' ,project: @project, image: Image.new %>
         </div>
 
 
-        <% end %>
 
 
 
-      </div>
+
+
 
       <%= render 'rhs_uploads' %>
 
@@ -147,11 +149,13 @@
 
     });
 
+    $('#comment_attachment').trigger('click');
+
     $('.fa-thumbs-o-up').on('click', function(){
 
 
 
-      // $('#comment_attachment').trigger('click');
+      //
 
 
 
