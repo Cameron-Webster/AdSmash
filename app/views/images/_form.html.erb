@@ -2,7 +2,9 @@
 <%= simple_form_for [project,image] do |f| %>
 <%= f.input :photo %>
 <%= f.input :photo_cache, as: :hidden %>
-<%= f.button :submit , class: 'btn btn-primary pull-right'%>
+<%= f.button :submit , class: 'btn btn-danger pull-right'%>
+
+<div style="margin-bottom:50px; "></div>
 
 
 <% end %>

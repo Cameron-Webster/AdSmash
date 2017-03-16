@@ -1,4 +1,5 @@
  $(document).ready(function() {
+if ($('#footer').length){
 
    var docHeight = $(window).height();
    var footerHeight = $('#footer').height();
@@ -7,4 +8,5 @@
    if (footerTop < docHeight) {
     $('#footer').css('margin-top', 10+ (docHeight - footerTop) + 'px');
    }
-  });
+ }
+ });
