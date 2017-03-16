@@ -105,8 +105,9 @@ p.linkedin {
 
 }
 
-.button-ad {
-  margin-left: 10px;
+
+.buttonfix{
+ margin-left: 10px;
   padding: 10px 20px 10px 20px;
   border-radius: 4px;
   line-height: 40px;
@@ -119,7 +120,7 @@ p.linkedin {
   margin-right: 20px;
 }
 
-.button-ad:hover {
+.button-ad:hover,.buttonfix:hover {
   color: white;
   background: #B3252F;
   border-color: #B3252F;

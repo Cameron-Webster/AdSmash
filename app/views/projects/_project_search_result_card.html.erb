@@ -14,7 +14,14 @@
 
   <%= link_to project do %>
   <div class="project-last-image"
+
+       <%if project.images.any?  %>
        style="background-image: url(<%= project.images.blank? ? cl_image_path('cfe5sxmawaldkgiaez6c.png', effect: "grayscale") : cl_image_path(project.images.last.photo)%>)">
+
+
+       <%end %>
+
+
   </div>
 <% end %>
 
