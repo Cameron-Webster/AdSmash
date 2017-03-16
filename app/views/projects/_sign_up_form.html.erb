@@ -1,37 +1,51 @@
 
 
-<%= form_tag edit_project_path(@project), method: :get do %>
-<%= hidden_field_tag :step, 3 %>
-<%= text_field_tag :search, params[:search] %>
-<%= submit_tag "Invite" %>
-<% end %>
 
 
 <% if defined?(@users) %>
 
-       <% if @users.empty?  %>
+<div class="search-resault-title">
+<h4 class="text-center">Click on the user name to add</h4>
+<%= link_to "Empty the search", invite_users_path(@project), class:"btn btn-default btn-block btn-reset-margin" %>
+</div>
 
+
+
+       <% if @users.empty?  %>
+        <div class="search-resault-title">
         <p>Sorry there are no users with those credentials use the link below to invite by email</p>
         <p>Type the email address to send an invitation </p>
+
+        <div class="form-group">
         <%= form_tag send_invitations_path do %>
-        <%= text_field_tag :search, @search_term %>
-        <%= submit_tag "Send a mail" %>
+        <%= text_field_tag :search, @search_term, class: "form-control form-mail-margin", placeholder: "Type the email address"  %>
+        <%= submit_tag "Send a mail", class: "btn btn-danger btn-block" %>
         <% end  %>
+        </div>
+
+        </div>
 
        <% else  %>
 
+       <ul class="list-ul">
       <% @users.each do |user|  %>
-           <ul>
-            <%if user[:avatar] != nil  %>
-            <%=image_tag(user.avatar, size: "40x40", alt: "Edit Entry")  %>
-            <% else  %>
-            <%=image_tag('http://www.ceskymac.cz/wp-content/uploads/2012/07/GuestUserIcon.png', size: "40x40", alt: "Edit Entry")  %>
-              <% end %>
-            <%= link_to user.name, send_existing_path(@project, user), method: :post %></li>
 
-            <% end  %>
-            </ul>
+
+            <li class="line-list"> <%if user[:avatar] != nil  %>
+            <%=image_tag(user.avatar, size: "40x40", alt: "Edit Entry", class: "img-list-round")  %>
+
+            <% else  %>
+
+            <%=image_tag('http://www.ceskymac.cz/wp-content/uploads/2012/07/GuestUserIcon.png', size: "40x40", alt: "Edit Entry", class: "img-list-round" )  %>
+              <% end %>
+              <% user_name = "#{user.name} #{user.last_name}"  %>
+            <%= link_to user_name, send_existing_path(@project, user), method: :post %>
+        <% end  %>
+
+
 
         <% end  %>
 
 <% end %>
+
+
