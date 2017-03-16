@@ -6,7 +6,7 @@
     <h3 class="motto text-center">Manage your advertising campaign easier</h3>
 
 
-    <%= link_to t(".sign_up", default: "Sign up"), new_user_registration_path, class: "btn button-ad " %>
+    <%= link_to 'sign-up', new_user_registration_path, class: "btn button-ad " %>
 
 
     <%= link_to omniauth_authorize_path('user', 'linkedin'), class: ' btn button-linkedin' do %>
