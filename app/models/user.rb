@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
 
 has_many :project_teams, dependent: :destroy
-has_many :comments
+has_many :comments, dependent: :destroy
 has_many :projects, through: :project_teams
 has_many :notifications, foreign_key: :recipient_id
 
