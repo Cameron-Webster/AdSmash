@@ -6,9 +6,12 @@
 
   <%= f.input :attachment, label: false %>
   <%= f.input :attachment_cache, as: :hidden %>
+
+  <%= f.button :submit do %>
   <div class="attachment">
     <i class="fa fa-file-image-o" aria-hidden="true"></i>
   </div>
+  <% end %>
 <% end %>
 
 
