@@ -14,10 +14,14 @@
 
   <%= link_to project do %>
   <div class="project-last-image"
+
        <%if project.images.any?  %>
-       style="background-image: url(<%= project.photos.blank? ? cl_image_path('cfe5sxmawaldkgiaez6c.png', effect: "grayscale") : cl_image_path(project.images.last.photo)%>)">
-       <%else  %>
+       style="background-image: url(<%= project.images.blank? ? cl_image_path('cfe5sxmawaldkgiaez6c.png', effect: "grayscale") : cl_image_path(project.images.last.photo)%>)">
+
+
        <%end %>
+
+
   </div>
 <% end %>
 
@@ -33,9 +37,11 @@
            <%= render 'modal_edit',  action: "Edit Project", project: project%>
           </li>
           <li>
-            <%= link_to project.images.last.photo.url, download: "download" do %>
-            <i class="fa fa-download"></i>  <%= t("Download") %>
-            <% end %>
+            <% if project.images.present? %>
+              <%= link_to project.images.last.photo.url, download: "download" do %>
+              <i class="fa fa-download"></i>  <%= t("Download") %>
+              <% end %>
+           <% end %>
           </li>
           <li>
             <%= link_to destroy_user_session_path, method: :delete do %>
