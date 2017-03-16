@@ -9,10 +9,15 @@
   padding: 0px 30px;
   align-items: center;
   justify-content: space-between;
+
   /*guys need to change this for the sidemenu to work properly
   */
-  z-index: 2;
-  position: relative;
+  // z-index: 2;
+  // position: relative;
+
+  width: 85%;
+  float: right;
+
 }
 
 /* Optional class to fix the navbar on top */
@@ -34,6 +39,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width:49%;
 }
 
 /* Navbar item */

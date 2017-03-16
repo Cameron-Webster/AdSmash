@@ -25,6 +25,13 @@ class Project < ApplicationRecord
   # validates :status, presence: true - QUESTION: should this be validated? Is there a way?
   validates :brief, presence: false
   # validate :compare_date
+
+  def photos
+    return if self.images.empty? && self.images.photo.nil?
+    result = []
+    self.images.each { |image| result << image.photo unless image.photo.url.nil? }
+    return result.flatten
+  end
 end
 
 # def compare_date

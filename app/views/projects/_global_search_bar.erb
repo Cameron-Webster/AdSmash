@@ -1,7 +1,7 @@
-<%= simple_form_for :global_search, :url => projects_path, method: :get, html: {class: 'navbar-search '  } do |f| %>
+<%= simple_form_for :global_search, :url => projects_path, method: :get, html: {class: 'navbar-search glob-search '  } do |f| %>
 
-  <%= f.input :content, input_html: {class: 'thin-form '  },label_html: {class: 'sr-only ' }, placeholder: 'Search by content'  %>
-  <button type="submit" class="btn grey-button">
+  <%= f.input :content, input_html: {class: 'thin-form second-search '  },label_html: {class: 'sr-only ' }, placeholder: 'Search by content'  %>
+  <button type="submit" class="btn grey-button btn-second">
     <i class="fa fa-search" aria-hidden="true"></i>
   </button>
 

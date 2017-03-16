@@ -5,6 +5,7 @@
   <% end %>
 
 
+    <% if user_signed_in? %>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
@@ -18,7 +19,6 @@
     </form> -->
 
     <!-- Different navigation if login or not -->
-    <% if user_signed_in? %>
 
     <!-- Notification -->
     <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
@@ -27,6 +27,8 @@
       <div class="badge badge-blue">3</div>
     </div> -->
     <% end %>
+      <%= render 'modal',  action: "NEW PROJECT"%>
+      <%= render 'projects/global_search_bar' %>
 
     <!-- Profile picture and dropdown -->
     <div class="navbar-wagon-item">

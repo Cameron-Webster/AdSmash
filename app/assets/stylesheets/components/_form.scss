@@ -5,8 +5,8 @@
   font-size: 16px;
   letter-spacing: 1;
   font-weight: 300;
-  border: 0.5px solid #A5A5A5 !important;
-  placeholder: red;
+  border: 0.5px solid $gray_palette !important;
+  width: 150%;
 
   // transition: all 0.3s ease;
 }

@@ -87,7 +87,10 @@
         <%= link_to new_project_image_path(@project) do %>
         <div class="new_img">
           <i class="fa fa-plus" aria-hidden="true"></i> New Image
+          <%= render 'images/modal_new_image' ,project: @project, image: Image.new %>
         </div>
+
+
         <% end %>
 
 
