@@ -1,6 +1,9 @@
 <% content_for(:title_tag) do %>
   <%=  "#{@project.name} | Adsmash" %>
 <% end %>
+
+
+
 <div class="show">
 
 
@@ -29,9 +32,9 @@
 
         </div>
 
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs show_project_pill">
 
-          <li class='active'><a data-toggle="tab" href="#home"><h1>Discussion Board</h1></a></li>
+          <li class='active project-tabs'><a data-toggle="tab" href="#home"><h1>Discussion Board</h1></a></li>
 
           <li><a data-toggle="tab" href="#menu1"><h1>Brief</h1></a></li>
 
@@ -117,7 +120,6 @@
 </div>
 
 </div>
-
 
 <% content_for :after_js do %>
 <script>
