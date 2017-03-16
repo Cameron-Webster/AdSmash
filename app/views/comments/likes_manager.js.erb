@@ -1,0 +1,10 @@
+
+<% if params[:like] == 'true' %>
+$('#commentlikes' + "<%= @comment.id %>" ).prev().addClass('liked');
+$('#commentlikes' + "<%= @comment.id %>" ).addClass('liked');
+$('#commentlikes' + "<%= @comment.id %>" ).text("<%= @comment.likes %>");
+<% else %>
+$('#commentdislikes' + "<%= @comment.id %>" ).prev().addClass('liked');
+$('#commentdislikes' + "<%= @comment.id %>" ).addClass('liked');
+$('#commentdislikes' + "<%= @comment.id %>" ).text("<%= @comment.dislikes %>");
+<% end %>

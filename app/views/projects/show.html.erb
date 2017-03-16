@@ -12,6 +12,8 @@
 
       <div class="col-sm-10 fluid">
 
+      <%= render 'shared/flashes' %>
+
         <div class="row">
 
           <div class="col-sm-12">
@@ -139,8 +141,14 @@
 
     });
 
-    $('.attachment').on('click', function(){
-      $('#comment_attachment').trigger('click');
+    $('.fa-thumbs-o-up').on('click', function(){
+
+
+
+      // $('#comment_attachment').trigger('click');
+
+
+
     });
 
     $('.fa-thumbs-o-up').on('click', function() {

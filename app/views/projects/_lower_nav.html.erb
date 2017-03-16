@@ -43,6 +43,7 @@
               </li>
               <% end %>
 
+
               <li>
               <%= link_to  project_path(@project), method: :delete do %>
                  <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Project
@@ -53,6 +54,14 @@
 
 
               <i class="fa fa-wrench" aria-hidden="true"></i> Edit
+
+            </a>
+            </li>
+            <li>
+              <a href="#"  data-toggle="modal" data-target="#ResolveModal<%= @project.id %>">
+
+
+              <i class="fa fa-wrench" aria-hidden="true"></i> Resolve
 
             </a>
             </li>
@@ -110,3 +119,8 @@
                 </div>
               </div>
             </div>
+
+
+    <!-- resolve modal -->
+
+    <%= render 'resolve_modal' %>
