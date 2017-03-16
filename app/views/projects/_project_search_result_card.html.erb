@@ -1,7 +1,7 @@
 <div class="project-card">
   <div class="project-card-header">
     <div class="text-thin deadline">
-      <%= project.deadline  %>
+      <li class="eleven_font"> <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<%= pluralize(((project.deadline - Date.today).to_i), 'day') %> left
     </div>
 
     <div class="notifications">

@@ -1,7 +1,7 @@
 .foot {
 
  height: $margin-body-bottom;
-
+  display: absolute;
  background-color: #333031;
  right: 0;
  bottom: 0;
@@ -40,3 +40,6 @@
    padding-left: 40px;
 }
 
+.footer_text{
+  padding-top: 35px;
+}
