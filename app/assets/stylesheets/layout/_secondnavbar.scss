@@ -9,7 +9,7 @@
   justify-content: flex-end;
 }
 .secondnavbar{
-
+  text-decoration: none!important;
   width: 18%;
   margin-right: 35px;
 
@@ -221,8 +221,23 @@
 
 
   .thin-link{
-    font-weight: 300;
+    font-weight: 400;
     color: #A5A5A5;
+    padding-top: 9px;
+    padding-bottom: 14px;
+    background-color: $smash-red;
+    color: white;
+    padding-left: 16px;
+    padding-right: 10px;
+    margin-left: -2px;
+    border-radius: 0px 10px 10px 0px;
+    box-shadow: 2px 1px 1px #dcdcdc;
+    text-decoration: none!important;
+    transition: all 0.3s ease;
+    &:hover{
+    background-color: $smash-red-hover;
+    color: $gray_palette;
+    }
   }
 
   }
