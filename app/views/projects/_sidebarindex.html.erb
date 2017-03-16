@@ -1,17 +1,14 @@
 <div class="sidebar">
-  <%= link_to projects_path, class: "navbar-wagon-brand" do %>
-      <%= image_tag "Adsmash_logo.png" %>
-    <% end %>
   <ul>
-  <br>
-  <br>
-  <li><%=link_to "All projects", projects_path  %>
-
-  </li>
-    <%= render "projects/list_open_closed" %>
-  </li>
-  <br>
-  <li> People</li>
-   <%= render "projects/list_users" %>
+    <br>
+    <br>
+    <li>
+      <%=link_to "All projects", projects_path  %>
+    </li>
+      <%= render "projects/list_open_closed" %>
+    </li>
+    <br>
+    <li> People</li>
+    <%= render "projects/list_users" %>
   </ul>
 </div>

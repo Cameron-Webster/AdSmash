@@ -1,72 +1,38 @@
-<body class="background-invite">
 
- <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-md-12">
 
-      <div class="framework-invite center-block">
-        <div class="invite-title text-center">
-          <h4>Add collaborators to your project</h4>
-          <h5>Give others the ability to comment this project</h5>
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+
+    <div class="framework-invite center-block">
+      <div class="invite-title text-center">
+        <h4>Add collaborators to your project</h4>
+        <h5>Give others the ability to comment this project</h5>
+      </div>
+      <div class="text-center">
+        <%= form_tag edit_project_path(@project), method: :get do %>
+        <%= hidden_field_tag :step, 3 %>
+
+        <div class="form-group form-group-search">
+          <%= image_tag('glass.png')  %>
+          <%= text_field_tag :search, params[:search],id: "searchfa", class: "form-control input-invite", placeholder: "Type the user name" %>
         </div>
-        <div class="text-center">
-          <%= form_tag edit_project_path(@project), method: :get do %>
-          <%= hidden_field_tag :step, 3 %>
+        <%= submit_tag "Invite", class: "btn btn-danger btn-block button-margin" %>
+        <p><b>Note:</b> Type the user name you want to invite</p>
+        <% end %>
 
-
-          <div class="form-group form-group-search">
-            <%= image_tag('glass.png')  %>
-            <%= text_field_tag :search, params[:search],id: "searchfa", class: "form-control input-invite", placeholder: "Type the user name" %>
-          </div>
-          <%= submit_tag "Invite", class: "btn btn-danger btn-block button-margin" %>
-          <p><b>Note:</b> Type the user name you want to invite</p>
-          <% end %>
-
-        </div>
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
-  <div class="row">
-    <div class="col-xs-12 col-md-12">
-      <!-- insert <div class="card"> -->
-
-      <div class=" framework-invite-list center-block">
-      <%= render 'sign_up_form' %>
-
-      </div>
-
-
-
-
-
-
-
-     </div>
-   </div>
- </div>
-
-
-
-
-
 </div>
 
-
-
-
-
-
-</body>
-
-
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <!-- insert <div class="card"> -->
+    <div class=" framework-invite-list center-block">
+      <%= render 'sign_up_form' %>
+    </div>
+  </div>
+</div>
 
 
 
