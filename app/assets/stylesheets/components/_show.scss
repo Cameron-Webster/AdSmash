@@ -21,7 +21,14 @@
   padding: 0px;
   margin: 0px;
 }
-
+ul.margin_paddingless.list-inline{
+      width: 104%;
+    margin-left: -15px;
+    height: 70px;
+    padding-top: 20px;
+    background-color: white;
+    margin-bottom: -55px;
+}
 
 
 .fluid {
@@ -253,6 +260,8 @@ button:focus {
 
 .outer {
   border: 1px solid #d8d8d8;
+  background-color: white;
+  width: 101.3%;
 }
 
 .icon-trash {
@@ -315,3 +324,15 @@ height: 500px;
 
 }
 
+.show_project_pill{
+  width: 110%;
+  background-color:white;
+}
+.show a {
+    height: 70px;
+    padding-top: 25px!important;
+    margin-top: -15px;
+}
+#new_image{
+  padding-top: 15px!important;
+}
