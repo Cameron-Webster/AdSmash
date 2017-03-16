@@ -1,31 +1,14 @@
 <div class="sidebar">
-
   <ul>
-
+    <br>
+    <br>
     <li>
       <%=link_to "All projects", projects_path  %>
     </li>
-    <li>
-      <%=link_to "Open Project", projects_path  %>
+      <%= render "projects/list_open_closed" %>
     </li>
-    <li>
-      <%=link_to "Closed Project", projects_path  %>
-    </li>
-    <li>
-      <%= link_to "Profile Settings", edit_user_registration_path %>
-    </li>
-    <% unless current_page?('/projects') %>
-
-      <%= link_to projects_path do %>
-        <li>
-          <em>
-            <i class="fa fa-arrow-left" aria-hidden="true"></i> Back
-          </em>
-        </li>
-      <% end %>
-
-    <% end %>
-
+    <br>
+    <li> People</li>
+    <%= render "projects/list_users" %>
   </ul>
-
 </div>
