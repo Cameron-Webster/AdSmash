@@ -1,4 +1,7 @@
-  /* Main class */
+/* Main class */
+.global_search_content{
+  float: left;
+}
 .secondnavbarwrapper{
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
   height: 60px;
@@ -6,7 +9,8 @@
   justify-content: flex-end;
 }
 .secondnavbar{
-  width: 60%;
+
+  width: 50%;
   margin-right: 35px;
 
 
@@ -266,8 +270,11 @@
 }
 .btn-second{
   border-radius: 0% 32% 32% 0%!important;
+      margin: 8px 0px 0px 103px;
 }
-
+.glob-search{
+  margin-top: 15px;
+}
 
 
 

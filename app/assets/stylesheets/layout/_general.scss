@@ -1,4 +1,29 @@
+// html,
+// body {
+//    margin:0;
+//    padding:0;
+//    height:100%;
+// }
 li{
   list-style-type: none;
 
+}
+// #content{
+//    min-height:100%;
+//    position:relative;
+//    padding-bottom: $margin-body-bottom;
+// }
+
+
+html,
+body {
+  margin:0;
+  padding:0;
+  height:100%;
+  background-color: #e8e8e8;
+  color: $adsmash-text;
+}
+#wrapper {
+  min-height:100%;
+  position:relative;
 }

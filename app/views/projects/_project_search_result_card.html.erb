@@ -1,7 +1,7 @@
 <div class="project-card">
   <div class="project-card-header">
     <div class="text-thin deadline">
-      <%= project.deadline  %>
+      <li class="eleven_font"> <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<%= pluralize(((project.deadline - Date.today).to_i), 'day') %> left
     </div>
 
     <div class="notifications">
@@ -11,9 +11,13 @@
     </div>
   </div>
   <br>
+
+  <%= link_to project do %>
   <div class="project-last-image"
        style="background-image: url(<%= project.photos.blank? ? cl_image_path('cfe5sxmawaldkgiaez6c.png', effect: "grayscale") : cl_image_path(project.images.last.photo)%>)">
   </div>
+<% end %>
+
   <br>
   <div class="text-regular project-name">
     <%= project.name %>
