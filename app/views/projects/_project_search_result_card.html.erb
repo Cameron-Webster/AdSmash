@@ -22,9 +22,42 @@
   <div class="text-regular project-name">
     <%= project.name %>
   </div>
-   <div class="project-card-details">
+   <div class="project-card-details dropdown">
       <%= project.brand %>
-      <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+      <i class="fa fa-ellipsis-h dropdown-toggle" , data-toggle = "dropdown" ></i>
+      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li>
+           <%= render 'modal_edit',  action: "Edit Project", project: project%>
+          </li>
+          <li>
+            <%= link_to project.images.last.photo.url, download: "download" do %>
+            <i class="fa fa-download"></i>  <%= t("Download") %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-folder-o"></i>  <%= t(".sign_out", default: "Resolve") %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-trash-o"></i>  <%= t(".sign_out", default: "Delete") %>
+            <% end %>
+          </li>
+        </ul>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
