@@ -27,6 +27,7 @@ post '/projects/:project_id/images/:image_id/comments/:id', to: 'comments#likes_
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get '/projects/:id/add_users', to: 'projects#invite_view_users', as: 'invite_users'
+  get 'projects/:id/resolve', to: 'projects#close', as: 'project_close'
 end
 
 
