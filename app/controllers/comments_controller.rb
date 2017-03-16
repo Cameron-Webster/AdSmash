@@ -35,8 +35,13 @@ class CommentsController < ApplicationController
   end
   def likes_manager
      params[:like] == 'true' ? increase_likes : increase_dislikes
-     @comment.save
-     redirect_to project_path(@project)
+     if @comment.save
+      respond_to do |format|
+        format.html { redirect_to project_path(@project) }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
+    end
+
   end
 
 

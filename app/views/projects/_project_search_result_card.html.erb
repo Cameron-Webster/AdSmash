@@ -1,7 +1,7 @@
 <div class="project-card">
   <div class="project-card-header">
     <div class="text-thin deadline">
-      <%= project.deadline  %>
+      <li class="eleven_font"> <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<%= pluralize(((project.deadline - Date.today).to_i), 'day') %> left
     </div>
 
     <div class="notifications">
@@ -11,16 +11,62 @@
     </div>
   </div>
   <br>
+
+  <%= link_to project do %>
   <div class="project-last-image"
-       style="background-image: url(<%= cl_image_path(project.images.last.photo) if project.images.last.photo.url %>)">
+
+       <%if project.images.any?  %>
+       style="background-image: url(<%= project.images.blank? ? cl_image_path('cfe5sxmawaldkgiaez6c.png', effect: "grayscale") : cl_image_path(project.images.last.photo)%>)">
+
+
+       <%end %>
+
+
   </div>
+<% end %>
+
   <br>
   <div class="text-regular project-name">
     <%= project.name %>
   </div>
-   <div class="project-card-details">
+   <div class="project-card-details dropdown">
       <%= project.brand %>
-      <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+      <i class="fa fa-ellipsis-h dropdown-toggle" , data-toggle = "dropdown" ></i>
+      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li>
+           <%= render 'modal_edit',  action: "Edit Project", project: project%>
+          </li>
+          <li>
+            <% if project.images.present? %>
+              <%= link_to project.images.last.photo.url, download: "download" do %>
+              <i class="fa fa-download"></i>  <%= t("Download") %>
+              <% end %>
+           <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-folder-o"></i>  <%= t(".sign_out", default: "Resolve") %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-trash-o"></i>  <%= t(".sign_out", default: "Delete") %>
+            <% end %>
+          </li>
+        </ul>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 

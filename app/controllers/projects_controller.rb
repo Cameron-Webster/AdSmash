@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy,:add_users,:invite_view_users]
+  before_action :set_project, only: [:show, :edit, :update, :destroy,:add_users,:invite_view_users, :close]
   before_action :new_project, only: [:new,:index]
 
   def index
@@ -106,6 +106,15 @@ class ProjectsController < ApplicationController
 
       end
     end
+  end
+
+
+  def close
+
+    @project.status = "closed"
+    @project.save
+    redirect_to projects_path
+
   end
 
 

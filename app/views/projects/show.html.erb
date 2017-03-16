@@ -1,3 +1,6 @@
+<% content_for(:title_tag) do %>
+  <%=  "#{@project.name} | Adsmash" %>
+<% end %>
 <div class="show">
   <div class="container-fluid fluid">
 
@@ -11,6 +14,8 @@
       </div>
 
       <div class="col-sm-10 fluid">
+
+      <%= render 'shared/flashes' %>
 
         <div class="row">
 
@@ -85,7 +90,10 @@
         <%= link_to new_project_image_path(@project) do %>
         <div class="new_img">
           <i class="fa fa-plus" aria-hidden="true"></i> New Image
+          <%= render 'images/modal_new_image' ,project: @project, image: Image.new %>
         </div>
+
+
         <% end %>
 
 
@@ -139,8 +147,14 @@
 
     });
 
-    $('.attachment').on('click', function(){
-      $('#comment_attachment').trigger('click');
+    $('.fa-thumbs-o-up').on('click', function(){
+
+
+
+      // $('#comment_attachment').trigger('click');
+
+
+
     });
 
     $('.fa-thumbs-o-up').on('click', function() {

@@ -37,9 +37,9 @@
             </ul>
             <ul class="list-inline">
               <li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                <%= button_to "Like",  likes_path(@project,@first_image,com,like: 'true'), method: :post %> </li><li><%=  com.likes  %></li>
+                <%= button_to "Like",  likes_path(@project,@first_image,com,like: 'true'), remote: true, method: :post %> </li><li id="commentlikes<%= com.id %>"><%=  com.likes  %></li>
                 <li><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-                  <%= button_to "dislike",  likes_path(@project,@first_image,com,like: 'false'), method: :post %></li><li> <%=  com.dislikes  %></li>
+                  <%= button_to "dislike",  likes_path(@project,@first_image,com,like: 'false'), remote: true, method: :post %></li><li id="commentdislikes<%= com.id %>"> <%=  com.dislikes  %></li>
                 </ul>
               </div>
 

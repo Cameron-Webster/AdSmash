@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TODO</title>
+    <title><%= yield(:title_tag).blank? ? "AdSmash" : yield(:title_tag) %></title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,16 +13,17 @@
   <body>
 
 
-  <%= render 'shared/navbar'%>
+      <%= render 'shared/navbar'%>
+      <%= render 'shared/flashes' %>
+      <%= yield %>
 
-
-    <%= render 'shared/flashes' %>
-    <%= yield %>
-    <%= render 'shared/footer' %>
+    <%= render 'shared/footer' unless user_signed_in?%>
     <%= javascript_include_tag 'application' %>
     <%= yield(:after_js) %>
-  <!-- Importing an online javascript for my date picker -->
-    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-   <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
+    <!-- Importing an online javascript for my date picker -->
+      <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
   </body>
 </html>
