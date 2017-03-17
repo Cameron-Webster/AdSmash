@@ -18,7 +18,7 @@
       <%if project.images.any? and project.images.last and project.images.last.photo  %>
        style="background-image: url('<%= cl_image_path(project.images.last.photo)   %>');"
       <%else %>
-      style="background-image: url('<%=   cl_image_path('cfe5sxmawaldkgiaez6c.png', effect: "grayscale") %>');"
+      style="background-image: url('http://res.cloudinary.com/dx9qyppzx/image/upload/e_grayscale/cfe5sxmawaldkgiaez6c.png');"
        <%end %>
         >
 
