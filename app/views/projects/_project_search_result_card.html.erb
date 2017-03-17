@@ -3,11 +3,11 @@
     <div class="text-thin deadline">
       <li class="eleven_font"> <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<%= pluralize(((project.deadline - Date.today).to_i), 'day') %> left
     </div>
-
-    <div class="notifications">
-      <% count = 0 %>
-      <% @notifications.each {|n| count = count + 1 if n.notifiable_id == project.id} %>
+    <% count = 0 %>
+    <% @notifications.each {|n| count = count + 1 if n.notifiable_id == project.id} %>
+    <div class="notifications <%= 'active' unless count == 0 %>">
       <%=  content_tag(:td, count, class: ["cnt#{project.id}"]) %>
+
     </div>
   </div>
   <br>

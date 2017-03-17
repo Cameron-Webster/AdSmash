@@ -75,7 +75,10 @@ font-size: 16px;
   background-size: cover;
 }
 
-
+.project-card .notifications.active{
+  background-color: $smash-red;
+  border: 1px solid $smash-red;
+}
 
 
 

@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
 
     @notifications = Notification.where(recipient: current_user).unread
 
-    @projects = current_user.projects
+    @projects = current_user.projects.order(created_at: :desc)
     if params[:filter]
       if params[:filter] == "live"
         @projects = @projects.where("status LIKE ?", "live")

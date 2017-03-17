@@ -336,3 +336,10 @@ height: 500px;
 #new_image{
   padding-top: 15px!important;
 }
+#no-tab{
+  border-color: white!important;
+  margin-top: -20px;
+  &:hover{
+    background-color: transparent!important;
+  }
+}

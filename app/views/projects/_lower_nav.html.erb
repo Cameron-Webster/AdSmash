@@ -18,7 +18,7 @@
           <% adm = user.project_teams.where('project_id = ?', params[:id]).first.admin %>
 
           <li class="margin_paddingless">
-
+<a id="no-tab" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="<%= user.name %>">
                   <%if user[:avatar] != nil  %>
                   <%=image_tag(user.avatar, size: "40x40", alt: "No Image", class: "border-adm") %>
                   <% else  %>
@@ -26,6 +26,8 @@
                   <% end %>
 
 
+
+</a>
         </li>
         <% end %>
       </ul>
